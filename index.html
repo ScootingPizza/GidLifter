@@ -52,18 +52,18 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    padding: env(safe-area-inset-top, 0px) 2px 0;
+    padding: env(safe-area-inset-top, 0px) 1px 0;
   }
   .nav-btn {
     flex: 1;
-    padding: 16px 2px;
+    padding: 16px 1px;
     background: none;
     border: none;
     color: var(--text3);
     font-family: var(--font-display);
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
     cursor: pointer;
     transition: color 0.2s;
@@ -73,7 +73,7 @@
   .nav-btn.active::after {
     content: '';
     position: absolute;
-    bottom: 0; left: 10px; right: 10px;
+    bottom: 0; left: 8px; right: 8px;
     height: 2px;
     background: var(--accent);
     border-radius: 2px 2px 0 0;
@@ -522,6 +522,157 @@
     color: var(--red);
     border-color: rgba(255,77,77,0.25);
   }
+
+  /* New phase inline form */
+  .new-phase-form {
+    background: var(--bg2);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    margin-bottom: 10px;
+  }
+  .new-phase-form .settings-label { margin-top: 4px; }
+  .new-phase-form .settings-label.next { margin-top: 14px; }
+  .form-btn-row { display: flex; gap: 8px; margin-top: 14px; }
+  .form-btn-row > * { flex: 1; margin: 0 !important; }
+
+  /* Data tab */
+  .data-phase {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .data-phase.current { border-color: var(--accent); }
+  .data-phase-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 18px;
+    cursor: pointer;
+    user-select: none;
+    gap: 12px;
+  }
+  .data-phase-title {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .data-phase-status {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: #000;
+    padding: 3px 8px;
+    border-radius: 20px;
+  }
+  .data-phase-meta {
+    font-size: 10px;
+    color: var(--text2);
+    margin-top: 3px;
+    letter-spacing: 0.03em;
+  }
+  .data-chevron {
+    color: var(--text3);
+    font-size: 12px;
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+  .data-phase.open > .data-phase-header .data-chevron { transform: rotate(180deg); }
+  .data-phase-body { display: none; padding: 0 14px 14px; }
+  .data-phase.open > .data-phase-body { display: block; }
+
+  .data-week {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 8px;
+    overflow: hidden;
+  }
+  .data-week-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    cursor: pointer;
+    user-select: none;
+    gap: 12px;
+  }
+  .data-week-title {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .data-week-dates {
+    font-size: 10px;
+    color: var(--text3);
+    margin-top: 2px;
+    letter-spacing: 0.03em;
+  }
+  .data-week.open > .data-week-header .data-chevron { transform: rotate(180deg); }
+  .data-week-body { display: none; padding: 0 14px 14px; }
+  .data-week.open > .data-week-body { display: block; }
+
+  .data-bw-section {
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+  .data-bw-title {
+    font-size: 9px;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+  .data-bw-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .data-bw-row:last-child { border-bottom: none; }
+  .data-bw-row .d { color: var(--text2); }
+  .data-bw-row .w { color: var(--text); font-family: var(--font-display); font-weight: 600; }
+
+  .data-session {
+    margin-top: 14px;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+  }
+  .data-session:first-of-type { margin-top: 14px; }
+  .data-session-header {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .data-exercise { margin-bottom: 10px; }
+  .data-exercise:last-child { margin-bottom: 0; }
+  .data-exercise-name {
+    font-size: 11px;
+    color: var(--text);
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+  .data-exercise-sets {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+  }
 </style>
 </head>
 <body>
@@ -530,6 +681,7 @@
   <button class="nav-btn active" data-page="workout">Workout</button>
   <button class="nav-btn" data-page="weight">Weight</button>
   <button class="nav-btn" data-page="graphs">Graphs</button>
+  <button class="nav-btn" data-page="data">Data</button>
   <button class="nav-btn" data-page="settings">Settings</button>
 </nav>
 
@@ -606,6 +758,18 @@
   </div>
 </div>
 
+<div class="page" id="page-data">
+  <div class="header">
+    <div>
+      <div class="header-title">Data</div>
+      <div class="header-sub">All weeks · all phases</div>
+    </div>
+  </div>
+  <div style="padding: 0 16px;">
+    <div id="dataContent"></div>
+  </div>
+</div>
+
 <div class="page" id="page-settings">
   <div class="header">
     <div>
@@ -614,7 +778,7 @@
     </div>
   </div>
   <div style="padding: 0 16px;">
-    <div class="section-label">Phase</div>
+    <div class="section-label">Current Phase</div>
     <div class="settings-card">
       <div class="settings-label">Phase Name</div>
       <input class="settings-input" type="text" id="settingsPhaseName" maxlength="40" placeholder="Bulk">
@@ -625,6 +789,20 @@
       <div class="settings-hint">Week numbering counts from the Monday of this date. Changing this recalculates all weeks.</div>
     </div>
     <button class="settings-btn" id="phaseSaveBtn">Save Phase</button>
+
+    <div class="section-label" style="margin-top:28px;">New Phase</div>
+    <button class="settings-action" id="newPhaseBtn">+ Start new phase</button>
+    <div class="new-phase-form" id="newPhaseForm" style="display:none;">
+      <div class="settings-label">New Phase Name</div>
+      <input class="settings-input" type="text" id="newPhaseName" maxlength="40" placeholder="Cut">
+      <div class="settings-label next">New Phase Start Date</div>
+      <input class="settings-input" type="date" id="newPhaseStart">
+      <div class="settings-hint" id="newPhaseHint">Your current phase will be archived, ending the day before this date.</div>
+      <div class="form-btn-row">
+        <button class="settings-action" id="newPhaseCancelBtn">Cancel</button>
+        <button class="settings-btn" id="newPhaseConfirmBtn">Start Phase</button>
+      </div>
+    </div>
 
     <div class="section-label" style="margin-top:28px;">Data</div>
     <button class="settings-action" id="exportBtn">↓ Backup to file</button>
@@ -744,6 +922,7 @@ function save(key, val) {
 // ─── STATE ───────────────────────────────────────────────────────────────────
 let phaseName = load('phaseName', DEFAULT_PHASE_NAME);
 let phaseStart = load('phaseStart', DEFAULT_PHASE_START);
+let phaseHistory = load('phaseHistory', []); // array of {name, start, end}
 let weightLog = load('weightLog', DEFAULT_WEIGHT_LOG.slice());
 let workoutLog = load('workoutLog', {});
 
@@ -772,35 +951,40 @@ function formatDate(d) {
   const dt = new Date(d + 'T12:00:00');
   return dt.toLocaleDateString('en-AU', { day: 'numeric', month: 'short' });
 }
+function formatDateLong(d) {
+  const dt = new Date(d + 'T12:00:00');
+  return dt.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' });
+}
 
-function getWeekNum(dateStr) {
+// Per-phase week math
+function getWeekNumWithinPhase(dateStr, phaseStartStr) {
   const d = new Date(dateStr + 'T12:00:00');
+  const phaseMonday = getMondayOf(new Date(phaseStartStr + 'T00:00:00'));
   const monday = getMondayOf(d);
-  const phaseMonday = getMondayOf(getPhaseStartDate());
   const diff = Math.round((monday - phaseMonday) / (7 * 24 * 3600 * 1000));
   return Math.max(1, diff + 1);
 }
-
-function getWeekStart(weekNum) {
-  const d = new Date(getMondayOf(getPhaseStartDate()));
+function getWeekStartInPhase(weekNum, phaseStartStr) {
+  const d = new Date(getMondayOf(new Date(phaseStartStr + 'T00:00:00')));
   d.setDate(d.getDate() + (weekNum - 1) * 7);
   return localDateStr(d);
 }
-
-function getWeekEnd(weekNum) {
-  const d = new Date(getMondayOf(getPhaseStartDate()));
+function getWeekEndInPhase(weekNum, phaseStartStr) {
+  const d = new Date(getMondayOf(new Date(phaseStartStr + 'T00:00:00')));
   d.setDate(d.getDate() + (weekNum - 1) * 7 + 6);
   return localDateStr(d);
 }
 
+// Delegate the legacy helpers to the current phase
+function getWeekNum(dateStr) { return getWeekNumWithinPhase(dateStr, phaseStart); }
+function getWeekStart(weekNum) { return getWeekStartInPhase(weekNum, phaseStart); }
+function getWeekEnd(weekNum) { return getWeekEndInPhase(weekNum, phaseStart); }
 function getCurrentWeekNum() { return getWeekNum(today()); }
 
 function weekLabel(weekNum) {
   return `Week ${weekNum} of ${phaseName} · ${formatDate(getWeekStart(weekNum))} – ${formatDate(getWeekEnd(weekNum))}`;
 }
 
-// Given a day name and the date you're viewing things from, return that day's
-// date within the current calendar week.
 function getDayDateForCurrentWeek(dayName) {
   const monday = getMondayOf(new Date());
   monday.setDate(monday.getDate() + DAY_OFFSET[dayName]);
@@ -811,8 +995,24 @@ function dayKeyFor(date, dayName) {
   return `${date}-${dayName}`;
 }
 
+// Extract YYYY-MM-DD from a "YYYY-MM-DD-DayName" key
+function dateFromKey(key) {
+  return key.split('-').slice(0, 3).join('-');
+}
+
+// ─── PHASES ──────────────────────────────────────────────────────────────────
+// Returns [{name, start, end, current}], newest first, deduped by start date.
+// The current phase has end: null.
+function getAllPhases() {
+  const past = phaseHistory.map(p => ({ name: p.name, start: p.start, end: p.end || null, current: false }));
+  past.push({ name: phaseName, start: phaseStart, end: null, current: true });
+  const seen = new Set();
+  const unique = past.filter(p => { if (seen.has(p.start)) return false; seen.add(p.start); return true; });
+  unique.sort((a, b) => b.start.localeCompare(a.start));
+  return unique;
+}
+
 // ─── SEED & MIGRATION (runs once each) ───────────────────────────────────────
-// Seed BASELINE_WEEK_ONE into workoutLog as actual entries for week 1.
 function seedBaselineIfNeeded() {
   if (load('baselineSeeded', false)) return;
 
@@ -840,9 +1040,6 @@ function seedBaselineIfNeeded() {
   save('baselineSeeded', true);
 }
 
-// Older versions of this app stored workoutLog keys as
-// "{today's date}-{dayName}" instead of "{actual workout date}-{dayName}".
-// Re-key any existing entries to the new format.
 function migrateWorkoutLogKeysIfNeeded() {
   if (load('workoutLogV2', false)) { return; }
 
@@ -863,8 +1060,6 @@ function migrateWorkoutLogKeysIfNeeded() {
     actual.setDate(actual.getDate() + DAY_OFFSET[dayName]);
     const newKey = dayKeyFor(localDateStr(actual), dayName);
 
-    // If two old keys collapse to the same new key (rare), prefer the one
-    // already in newLog if it has more logged sets.
     if (newLog[newKey]) {
       const existingCount = countLoggedSets(newLog[newKey]);
       const incomingCount = countLoggedSets(data);
@@ -889,8 +1084,6 @@ function countLoggedSets(dayEntry) {
 }
 
 // ─── PRIOR WEEK LOOKUP ───────────────────────────────────────────────────────
-// Looks chronologically backwards (up to 12 weeks) for the most recent
-// session of this day+exercise with logged data. Returns null if nothing.
 function getPriorWorkoutData(dayName, exerciseName) {
   const currentMonday = getMondayOf(new Date());
 
@@ -927,6 +1120,7 @@ function showPage(name, btn) {
   if (name === 'graphs') renderGraphs();
   if (name === 'weight') renderWeight();
   if (name === 'workout') renderWorkout();
+  if (name === 'data') renderData();
   if (name === 'settings') renderSettings();
   window.scrollTo(0, 0);
 }
@@ -941,6 +1135,9 @@ function toast(msg) {
 
 function escAttr(s) {
   return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function escHTML(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
 // ─── WORKOUT RENDER ──────────────────────────────────────────────────────────
@@ -1125,7 +1322,7 @@ function skipRest() {
   document.getElementById('restOverlay').classList.remove('active');
 }
 
-// ─── WEIGHT ──────────────────────────────────────────────────────────────────
+// ─── WEIGHT (current phase only) ─────────────────────────────────────────────
 function logWeight() {
   const val = parseFloat(document.getElementById('weightInput').value);
   if (isNaN(val) || val < 30 || val > 200) { toast('Enter a valid weight!'); return; }
@@ -1146,9 +1343,9 @@ function deleteWeight(date) {
   save('weightLog', weightLog);
   renderWeight();
 }
-function getWeeklyAverages() {
+function getWeeklyAveragesInCurrentPhase() {
   const weeks = {};
-  weightLog.forEach(e => {
+  weightLog.filter(e => e.date >= phaseStart).forEach(e => {
     const wn = getWeekNum(e.date);
     if (!weeks[wn]) weeks[wn] = { entries: [], weekNum: wn, startDate: getWeekStart(wn), endDate: getWeekEnd(wn) };
     weeks[wn].entries.push(e.weight);
@@ -1158,7 +1355,7 @@ function getWeeklyAverages() {
     .sort((a, b) => a.weekNum - b.weekNum);
 }
 function renderWeight() {
-  const weeklies = getWeeklyAverages();
+  const weeklies = getWeeklyAveragesInCurrentPhase();
   const todayEl = document.getElementById('weightTodayDate');
   if (todayEl) {
     const now = new Date();
@@ -1182,11 +1379,12 @@ function renderWeight() {
       return `<div class="week-summary-card"><div><div class="week-summary-phase">Week ${w.weekNum} of ${phaseName}</div><div class="week-summary-dates">${formatDate(w.startDate)} – ${formatDate(w.endDate)}</div><div class="week-summary-avg">Avg <span>${w.avg.toFixed(2)}kg</span></div></div>${changeHTML}</div>`;
     }).join('');
   }
+  const phaseWeights = weightLog.filter(e => e.date >= phaseStart);
   const logContainer = document.getElementById('dailyLog');
-  if (weightLog.length === 0) {
+  if (phaseWeights.length === 0) {
     logContainer.innerHTML = '<div class="no-data">No entries yet</div>';
   } else {
-    logContainer.innerHTML = [...weightLog].reverse().map(e =>
+    logContainer.innerHTML = [...phaseWeights].reverse().map(e =>
       `<div class="daily-log-row"><div class="daily-log-date">${formatDate(e.date)}</div><div class="daily-log-weight">${e.weight}kg</div><button class="daily-log-del" data-action="delete-weight" data-date="${e.date}">✕</button></div>`
     ).join('');
   }
@@ -1288,7 +1486,7 @@ function drawChart(canvasId, labels, data, color) {
 function renderGraphs() { renderWeightGraph(); renderStrengthGraph(); }
 
 function renderWeightGraph() {
-  const weeklies = getWeeklyAverages();
+  const weeklies = getWeeklyAveragesInCurrentPhase();
   const labels = weeklies.map(w => `Wk${w.weekNum}`);
   const data = weeklies.map(w => parseFloat(w.avg.toFixed(2)));
   drawChart('weightChart', labels, data, '#e8ff47');
@@ -1297,7 +1495,8 @@ function renderWeightGraph() {
 function renderStrengthGraph() {
   const weeklyVolume = {};
   Object.entries(workoutLog).forEach(([dayKey, dayData]) => {
-    const dateStr = dayKey.split('-').slice(0,3).join('-');
+    const dateStr = dateFromKey(dayKey);
+    if (dateStr < phaseStart) return;
     const wn = getWeekNum(dateStr);
     Object.values(dayData.exercises || {}).forEach(sets => {
       sets.forEach(s => {
@@ -1322,6 +1521,128 @@ window.addEventListener('resize', () => {
   });
 });
 
+// ─── DATA TAB ────────────────────────────────────────────────────────────────
+function renderData() {
+  const container = document.getElementById('dataContent');
+  const phases = getAllPhases();
+
+  if (phases.length === 0) {
+    container.innerHTML = '<div class="no-data">No phases yet</div>';
+    return;
+  }
+
+  container.innerHTML = phases.map((phase, phaseIdx) => {
+    const isCurrent = phase.current;
+    const phaseEndDate = phase.end || '9999-12-31';
+    const phaseStartStr = phase.start;
+
+    // Collect weight + workout entries within this phase's date range
+    const phaseWeights = weightLog.filter(e => e.date >= phaseStartStr && e.date <= phaseEndDate);
+    const phaseWorkouts = Object.entries(workoutLog).filter(([key]) => {
+      const d = dateFromKey(key);
+      return d >= phaseStartStr && d <= phaseEndDate;
+    });
+
+    // Group by week within phase
+    const weeks = {};
+    phaseWeights.forEach(e => {
+      const wn = getWeekNumWithinPhase(e.date, phaseStartStr);
+      if (!weeks[wn]) weeks[wn] = { weekNum: wn, weights: [], workouts: [] };
+      weeks[wn].weights.push(e);
+    });
+    phaseWorkouts.forEach(([key, data]) => {
+      const dateStr = dateFromKey(key);
+      const wn = getWeekNumWithinPhase(dateStr, phaseStartStr);
+      if (!weeks[wn]) weeks[wn] = { weekNum: wn, weights: [], workouts: [] };
+      weeks[wn].workouts.push({ key, dateStr, data });
+    });
+
+    const sortedWeeks = Object.values(weeks).sort((a, b) => b.weekNum - a.weekNum);
+    const latestWeekNum = sortedWeeks.length ? sortedWeeks[0].weekNum : null;
+
+    const startLabel = formatDateLong(phaseStartStr);
+    const endLabel = phase.end ? formatDateLong(phase.end) : 'Ongoing';
+
+    const weeksHTML = sortedWeeks.length === 0
+      ? '<div class="no-data">No data yet</div>'
+      : sortedWeeks.map(week => {
+          const isLatest = isCurrent && week.weekNum === latestWeekNum;
+          const weekStart = getWeekStartInPhase(week.weekNum, phaseStartStr);
+          const weekEnd = getWeekEndInPhase(week.weekNum, phaseStartStr);
+
+          const bwHTML = week.weights.length === 0 ? '' : `
+            <div class="data-bw-section">
+              <div class="data-bw-title">Bodyweight</div>
+              ${week.weights.slice().sort((a,b)=>a.date.localeCompare(b.date)).map(e =>
+                `<div class="data-bw-row"><span class="d">${formatDate(e.date)}</span><span class="w">${e.weight}kg</span></div>`
+              ).join('')}
+            </div>`;
+
+          const sessionsHTML = week.workouts.slice().sort((a,b)=>a.dateStr.localeCompare(b.dateStr))
+            .map(w => {
+              const exercisesHTML = Object.entries(w.data.exercises || {}).map(([exName, sets]) => {
+                const setsHTML = sets.map((s, i) => {
+                  if (!s || (s.reps == null && !s.weight)) return '';
+                  const repText = s.reps != null ? s.reps : '—';
+                  const weightText = s.weight ? (s.weight === 'BW' ? 'BW' : s.weight + 'kg') : '';
+                  return `<div class="lw-set">S${i+1} <span>${escHTML(String(repText))}${weightText ? ' × ' + escHTML(weightText) : ''}</span></div>`;
+                }).filter(x => x).join('');
+                if (!setsHTML) return '';
+                return `
+                  <div class="data-exercise">
+                    <div class="data-exercise-name">${escHTML(exName)}</div>
+                    <div class="data-exercise-sets">${setsHTML}</div>
+                  </div>`;
+              }).filter(x => x).join('');
+              if (!exercisesHTML) return '';
+              return `
+                <div class="data-session">
+                  <div class="data-session-header">${escHTML(w.data.day || '')} · ${formatDate(w.dateStr)}</div>
+                  ${exercisesHTML}
+                </div>`;
+            }).filter(x => x).join('');
+
+          const weekId = `dw-${phaseIdx}-${week.weekNum}`;
+          const openClass = isLatest ? ' open' : '';
+          const innerEmpty = !bwHTML && !sessionsHTML;
+
+          return `
+            <div class="data-week${openClass}" id="${weekId}">
+              <div class="data-week-header" data-action="toggle-data-week" data-week-id="${weekId}">
+                <div>
+                  <div class="data-week-title">Week ${week.weekNum}</div>
+                  <div class="data-week-dates">${formatDate(weekStart)} – ${formatDate(weekEnd)}</div>
+                </div>
+                <div class="data-chevron">▼</div>
+              </div>
+              <div class="data-week-body">
+                ${bwHTML}
+                ${sessionsHTML}
+                ${innerEmpty ? '<div class="no-data">No data this week</div>' : ''}
+              </div>
+            </div>`;
+        }).join('');
+
+    const phaseId = `dp-${phaseIdx}`;
+    const openClass = isCurrent ? ' open' : '';
+    const statusBadge = isCurrent ? '<span class="data-phase-status">Current</span>' : '';
+
+    return `
+      <div class="data-phase${isCurrent ? ' current' : ''}${openClass}" id="${phaseId}">
+        <div class="data-phase-header" data-action="toggle-data-phase" data-phase-id="${phaseId}">
+          <div>
+            <div class="data-phase-title">${escHTML(phase.name)} ${statusBadge}</div>
+            <div class="data-phase-meta">${startLabel} – ${endLabel}</div>
+          </div>
+          <div class="data-chevron">▼</div>
+        </div>
+        <div class="data-phase-body">
+          ${weeksHTML}
+        </div>
+      </div>`;
+  }).join('');
+}
+
 // ─── SETTINGS ────────────────────────────────────────────────────────────────
 function renderSettings() {
   document.getElementById('settingsPhaseName').value = phaseName;
@@ -1343,13 +1664,58 @@ function savePhaseSettings() {
   renderGraphs();
 }
 
+function showNewPhaseForm() {
+  const form = document.getElementById('newPhaseForm');
+  const btn = document.getElementById('newPhaseBtn');
+  document.getElementById('newPhaseName').value = '';
+  document.getElementById('newPhaseStart').value = today();
+  document.getElementById('newPhaseHint').textContent =
+    `Your current "${phaseName}" phase will be archived, ending the day before this date.`;
+  form.style.display = 'block';
+  btn.style.display = 'none';
+}
+function hideNewPhaseForm() {
+  document.getElementById('newPhaseForm').style.display = 'none';
+  document.getElementById('newPhaseBtn').style.display = 'block';
+}
+function confirmNewPhase() {
+  const newName = document.getElementById('newPhaseName').value.trim();
+  const newStart = document.getElementById('newPhaseStart').value;
+  if (!newName) { toast('Phase name required'); return; }
+  if (!newStart) { toast('Start date required'); return; }
+  if (newStart <= phaseStart) { toast('Must start after current phase'); return; }
+
+  if (!confirm(`Archive "${phaseName}" and start "${newName}" on ${formatDateLong(newStart)}?`)) return;
+
+  // Compute previous phase end (day before new start)
+  const endDate = new Date(newStart + 'T00:00:00');
+  endDate.setDate(endDate.getDate() - 1);
+  const endStr = localDateStr(endDate);
+
+  phaseHistory.push({ name: phaseName, start: phaseStart, end: endStr });
+  phaseName = newName;
+  phaseStart = newStart;
+  save('phaseHistory', phaseHistory);
+  save('phaseName', phaseName);
+  save('phaseStart', phaseStart);
+
+  hideNewPhaseForm();
+  toast('New phase started ✓');
+  renderSettings();
+  renderWorkout();
+  renderWeight();
+  renderGraphs();
+}
+
 function confirmWipe() {
-  if (!confirm('This will delete every weight entry and workout set. Backup first if you want to keep anything. Continue?')) return;
+  if (!confirm('This will delete every weight entry, workout set, and phase history. Backup first if you want to keep anything. Continue?')) return;
   if (!confirm('Absolutely sure? There is no undo.')) return;
   weightLog = DEFAULT_WEIGHT_LOG.slice();
   workoutLog = {};
+  phaseHistory = [];
   save('weightLog', weightLog);
   save('workoutLog', workoutLog);
+  save('phaseHistory', phaseHistory);
   save('baselineSeeded', false);
   save('workoutLogV2', true);
   seedBaselineIfNeeded();
@@ -1363,7 +1729,7 @@ function confirmWipe() {
 function exportData() {
   const data = {
     exportedAt: new Date().toISOString(),
-    phaseName, phaseStart, weightLog, workoutLog,
+    phaseName, phaseStart, phaseHistory, weightLog, workoutLog,
   };
   const json = JSON.stringify(data, null, 2);
   const filename = `lift-backup-${new Date().toISOString().split('T')[0]}.json`;
@@ -1405,6 +1771,7 @@ function importData(event) {
       if (data.workoutLog) { workoutLog = data.workoutLog; save('workoutLog', workoutLog); }
       if (data.phaseName) { phaseName = data.phaseName; save('phaseName', phaseName); }
       if (data.phaseStart) { phaseStart = data.phaseStart; save('phaseStart', phaseStart); }
+      if (Array.isArray(data.phaseHistory)) { phaseHistory = data.phaseHistory; save('phaseHistory', phaseHistory); }
       toast('Backup restored ✓');
       renderSettings();
       renderWorkout();
@@ -1426,6 +1793,14 @@ document.addEventListener('click', (e) => {
   if (action === 'log-set') logSet(target.dataset.exkey, target.dataset.exname, target.dataset.day);
   else if (action === 'toggle-day') toggleDay(target.dataset.day);
   else if (action === 'delete-weight') deleteWeight(target.dataset.date);
+  else if (action === 'toggle-data-phase') {
+    const el = document.getElementById(target.dataset.phaseId);
+    if (el) el.classList.toggle('open');
+  }
+  else if (action === 'toggle-data-week') {
+    const el = document.getElementById(target.dataset.weekId);
+    if (el) el.classList.toggle('open');
+  }
 });
 
 document.getElementById('restSkipBtn').addEventListener('click', skipRest);
@@ -1434,6 +1809,9 @@ document.getElementById('exportBtn').addEventListener('click', exportData);
 document.getElementById('importFile').addEventListener('change', importData);
 document.getElementById('phaseSaveBtn').addEventListener('click', savePhaseSettings);
 document.getElementById('wipeBtn').addEventListener('click', confirmWipe);
+document.getElementById('newPhaseBtn').addEventListener('click', showNewPhaseForm);
+document.getElementById('newPhaseCancelBtn').addEventListener('click', hideNewPhaseForm);
+document.getElementById('newPhaseConfirmBtn').addEventListener('click', confirmNewPhase);
 document.getElementById('weightInput').addEventListener('keydown', (e) => {
   if (e.key === 'Enter') { e.preventDefault(); logWeight(); }
 });
