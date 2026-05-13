@@ -11,7 +11,6 @@
 <meta name="format-detection" content="telephone=no">
 <title>Lift</title>
 
-<!-- Apple touch icon, inlined as SVG data URI so it works offline / from Files -->
 <link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' rx='40' fill='%230a0a0a'/><text x='90' y='118' font-family='-apple-system,SF Pro Display,Helvetica,sans-serif' font-size='90' font-weight='800' text-anchor='middle' fill='%23e8ff47' letter-spacing='-4'>L</text></svg>">
 
 <style>
@@ -25,23 +24,16 @@
     --text2: #888888;
     --text3: #555555;
     --accent: #e8ff47;
-    --accent2: #b8cc2a;
     --red: #ff4d4d;
     --green: #4dff91;
     --grey: #666;
     --radius: 12px;
-    /* System fonts — no network required. SF Pro looks identical in feel to Syne for our purposes. */
     --font-display: -apple-system, "SF Pro Display", BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;
     --font-mono: ui-monospace, "SF Mono", "Menlo", "Cascadia Mono", "Roboto Mono", monospace;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
-  html, body {
-    background: var(--bg);
-    overscroll-behavior: none;
-  }
-
+  html, body { background: var(--bg); overscroll-behavior: none; }
   body {
     color: var(--text);
     font-family: var(--font-mono);
@@ -53,7 +45,6 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* NAV */
   .nav {
     display: flex;
     background: var(--bg);
@@ -61,18 +52,18 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    padding: env(safe-area-inset-top, 0px) 4px 0;
+    padding: env(safe-area-inset-top, 0px) 2px 0;
   }
   .nav-btn {
     flex: 1;
-    padding: 16px 4px;
+    padding: 16px 2px;
     background: none;
     border: none;
     color: var(--text3);
     font-family: var(--font-display);
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     cursor: pointer;
     transition: color 0.2s;
@@ -82,13 +73,12 @@
   .nav-btn.active::after {
     content: '';
     position: absolute;
-    bottom: 0; left: 16px; right: 16px;
+    bottom: 0; left: 10px; right: 10px;
     height: 2px;
     background: var(--accent);
     border-radius: 2px 2px 0 0;
   }
 
-  /* HEADER */
   .header {
     padding: 24px 20px 16px;
     display: flex;
@@ -107,11 +97,9 @@
     letter-spacing: 0.05em;
   }
 
-  /* PAGES */
   .page { display: none; padding: 0 16px; }
   .page.active { display: block; }
 
-  /* DAY CARDS */
   .day-card {
     background: var(--bg2);
     border: 1px solid var(--border);
@@ -154,7 +142,6 @@
   .day-body { display: none; padding: 0 18px 18px; }
   .day-card.open .day-body { display: block; }
 
-  /* EXERCISE */
   .exercise-block {
     margin-top: 16px;
     border-top: 1px solid var(--border);
@@ -182,7 +169,6 @@
     border-radius: 4px;
   }
 
-  /* LAST WEEK ROW */
   .last-week-label {
     font-size: 9px;
     color: var(--text3);
@@ -206,7 +192,6 @@
   }
   .lw-set span { color: var(--text); }
 
-  /* SET ROWS */
   .set-row {
     display: grid;
     grid-template-columns: 28px 1fr 1fr auto;
@@ -214,18 +199,14 @@
     align-items: center;
     margin-bottom: 8px;
   }
-  .set-num {
-    font-size: 10px;
-    color: var(--text3);
-    text-align: center;
-  }
+  .set-num { font-size: 10px; color: var(--text3); text-align: center; }
   .set-input {
     background: var(--bg3);
     border: 1px solid var(--border);
     border-radius: 8px;
     color: var(--text);
     font-family: var(--font-mono);
-    font-size: 16px; /* 16px prevents iOS auto-zoom on focus */
+    font-size: 16px;
     padding: 10px 10px;
     text-align: center;
     width: 100%;
@@ -252,7 +233,6 @@
   .set-log-btn:active { background: var(--accent); color: #000; border-color: var(--accent); }
   .set-log-btn.logged { background: rgba(232,255,71,0.1); color: var(--accent); border-color: rgba(232,255,71,0.3); }
 
-  /* HEADER LABELS */
   .set-header {
     display: grid;
     grid-template-columns: 28px 1fr 1fr auto;
@@ -267,7 +247,6 @@
     text-align: center;
   }
 
-  /* REST TIMER */
   .rest-overlay {
     display: none;
     position: fixed;
@@ -300,11 +279,7 @@
     position: relative;
     margin-bottom: 32px;
   }
-  .rest-svg {
-    position: absolute;
-    inset: -3px;
-    transform: rotate(-90deg);
-  }
+  .rest-svg { position: absolute; inset: -3px; transform: rotate(-90deg); }
   .rest-progress {
     fill: none;
     stroke: var(--accent);
@@ -328,11 +303,9 @@
     font-size: 13px;
     padding: 14px 40px;
     cursor: pointer;
-    transition: all 0.2s;
   }
   .rest-skip:active { background: var(--bg4); color: var(--text); }
 
-  /* WEIGHT TRACKER PAGE */
   .weight-input-card {
     background: var(--bg2);
     border: 1px solid var(--border);
@@ -340,11 +313,7 @@
     padding: 20px;
     margin-bottom: 16px;
   }
-  .weight-input-row {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-  }
+  .weight-input-row { display: flex; gap: 10px; align-items: center; }
   .weight-big-input {
     flex: 1;
     background: var(--bg3);
@@ -364,12 +333,7 @@
   }
   .weight-big-input:focus { border-color: var(--accent); }
   .weight-big-input::placeholder { color: var(--text3); font-size: 18px; font-weight: 400; }
-  .weight-unit {
-    font-family: var(--font-display);
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--text3);
-  }
+  .weight-unit { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--text3); }
   .weight-log-btn {
     background: var(--accent);
     color: #000;
@@ -380,12 +344,10 @@
     font-weight: 700;
     padding: 14px 22px;
     cursor: pointer;
-    transition: opacity 0.15s;
     white-space: nowrap;
   }
   .weight-log-btn:active { opacity: 0.8; }
 
-  /* WEEK SUMMARY CARDS */
   .week-summary-card {
     background: var(--bg2);
     border: 1px solid var(--border);
@@ -396,23 +358,9 @@
     align-items: center;
     justify-content: space-between;
   }
-  .week-summary-phase {
-    font-family: var(--font-display);
-    font-size: 15px;
-    font-weight: 700;
-  }
-  .week-summary-dates {
-    font-size: 10px;
-    color: var(--text2);
-    margin-top: 3px;
-    letter-spacing: 0.03em;
-  }
-  .week-summary-avg {
-    font-size: 12px;
-    color: var(--text2);
-    margin-top: 6px;
-    font-family: var(--font-mono);
-  }
+  .week-summary-phase { font-family: var(--font-display); font-size: 15px; font-weight: 700; }
+  .week-summary-dates { font-size: 10px; color: var(--text2); margin-top: 3px; letter-spacing: 0.03em; }
+  .week-summary-avg { font-size: 12px; color: var(--text2); margin-top: 6px; font-family: var(--font-mono); }
   .week-summary-avg span { color: var(--text); font-size: 15px; }
   .week-change {
     font-family: var(--font-display);
@@ -425,7 +373,6 @@
   .week-change.down { color: var(--red); background: rgba(255,77,77,0.08); }
   .week-change.same { color: var(--grey); background: rgba(100,100,100,0.08); }
 
-  /* DAILY LOG */
   .daily-log-title {
     font-size: 10px;
     color: var(--text3);
@@ -451,7 +398,6 @@
     padding: 4px 8px;
   }
 
-  /* GRAPHS PAGE */
   .graph-card {
     background: var(--bg2);
     border: 1px solid var(--border);
@@ -459,12 +405,7 @@
     padding: 20px;
     margin-bottom: 16px;
   }
-  .graph-title {
-    font-family: var(--font-display);
-    font-size: 14px;
-    font-weight: 700;
-    margin-bottom: 4px;
-  }
+  .graph-title { font-family: var(--font-display); font-size: 14px; font-weight: 700; margin-bottom: 4px; }
   .graph-sub {
     font-size: 10px;
     color: var(--text3);
@@ -474,7 +415,6 @@
   }
   canvas { width: 100% !important; display: block; }
 
-  /* SECTION LABELS */
   .section-label {
     font-size: 10px;
     color: var(--text3);
@@ -483,7 +423,6 @@
     margin: 20px 0 10px;
   }
 
-  /* TOAST */
   .toast {
     position: fixed;
     bottom: calc(env(safe-area-inset-bottom, 0px) + 30px);
@@ -504,13 +443,7 @@
   }
   .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-  /* PHASE SELECTOR */
-  .phase-row {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 16px;
-    flex-wrap: wrap;
-  }
+  .phase-row { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
   .phase-chip {
     background: var(--bg3);
     border: 1px solid var(--border);
@@ -519,12 +452,76 @@
     font-family: var(--font-mono);
     font-size: 11px;
     padding: 6px 14px;
-    cursor: pointer;
-    transition: all 0.15s;
   }
   .phase-chip.active { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 500; }
 
   .no-data { font-size: 12px; color: var(--text3); text-align: center; padding: 30px 0; }
+
+  /* Settings */
+  .settings-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    margin-bottom: 10px;
+  }
+  .settings-label {
+    font-size: 10px;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+  .settings-input {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 16px;
+    padding: 12px 14px;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .settings-input:focus { border-color: var(--accent); }
+  .settings-hint { font-size: 10px; color: var(--text3); margin-top: 8px; line-height: 1.5; }
+  .settings-btn {
+    width: 100%;
+    background: var(--accent);
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 14px;
+    margin-top: 4px;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+  }
+  .settings-btn:active { opacity: 0.8; }
+  .settings-action {
+    display: block;
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 14px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+  .settings-action.settings-danger {
+    color: var(--red);
+    border-color: rgba(255,77,77,0.25);
+  }
 </style>
 </head>
 <body>
@@ -533,9 +530,9 @@
   <button class="nav-btn active" data-page="workout">Workout</button>
   <button class="nav-btn" data-page="weight">Weight</button>
   <button class="nav-btn" data-page="graphs">Graphs</button>
+  <button class="nav-btn" data-page="settings">Settings</button>
 </nav>
 
-<!-- REST TIMER OVERLAY -->
 <div class="rest-overlay" id="restOverlay">
   <div class="rest-label">Rest Period</div>
   <div class="rest-circle">
@@ -549,12 +546,11 @@
 
 <div class="toast" id="toast"></div>
 
-<!-- WORKOUT PAGE -->
 <div class="page active" id="page-workout">
   <div class="header">
     <div>
       <div class="header-title">Lift</div>
-      <div class="header-sub" id="workoutWeekLabel">Week 1 · Bulk</div>
+      <div class="header-sub" id="workoutWeekLabel">—</div>
     </div>
   </div>
   <div style="padding: 0 16px 16px;">
@@ -563,7 +559,6 @@
   <div id="dayList" style="padding: 0 16px;"></div>
 </div>
 
-<!-- WEIGHT PAGE -->
 <div class="page" id="page-weight">
   <div class="header">
     <div>
@@ -590,26 +585,14 @@
   </div>
 </div>
 
-<!-- GRAPHS PAGE -->
 <div class="page" id="page-graphs">
   <div class="header">
     <div>
       <div class="header-title">Progress</div>
       <div class="header-sub">Strength & weight over time</div>
     </div>
-    <button id="exportBtn" style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;color:var(--accent);font-family:var(--font-display);font-size:11px;font-weight:700;padding:8px 14px;cursor:pointer;letter-spacing:0.04em;">↓ Backup</button>
   </div>
   <div style="padding: 0 16px;">
-    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;">
-      <div>
-        <div style="font-family:var(--font-display);font-size:13px;font-weight:700;margin-bottom:3px;">Restore Backup</div>
-        <div style="font-size:10px;color:var(--text3);">Load a previously exported file</div>
-      </div>
-      <label style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;color:var(--text2);font-family:var(--font-display);font-size:11px;font-weight:700;padding:8px 14px;cursor:pointer;letter-spacing:0.04em;">
-        ↑ Restore
-        <input type="file" accept=".json,application/json" id="importFile" style="display:none;">
-      </label>
-    </div>
     <div class="graph-card">
       <div class="graph-title">Bodyweight</div>
       <div class="graph-sub">Weekly average · kg</div>
@@ -623,17 +606,52 @@
   </div>
 </div>
 
+<div class="page" id="page-settings">
+  <div class="header">
+    <div>
+      <div class="header-title">Settings</div>
+      <div class="header-sub">Phase & data</div>
+    </div>
+  </div>
+  <div style="padding: 0 16px;">
+    <div class="section-label">Phase</div>
+    <div class="settings-card">
+      <div class="settings-label">Phase Name</div>
+      <input class="settings-input" type="text" id="settingsPhaseName" maxlength="40" placeholder="Bulk">
+    </div>
+    <div class="settings-card">
+      <div class="settings-label">Phase Start Date</div>
+      <input class="settings-input" type="date" id="settingsPhaseStart">
+      <div class="settings-hint">Week numbering counts from the Monday of this date. Changing this recalculates all weeks.</div>
+    </div>
+    <button class="settings-btn" id="phaseSaveBtn">Save Phase</button>
+
+    <div class="section-label" style="margin-top:28px;">Data</div>
+    <button class="settings-action" id="exportBtn">↓ Backup to file</button>
+    <label class="settings-action">
+      ↑ Restore from file
+      <input type="file" accept=".json,application/json" id="importFile" style="display:none;">
+    </label>
+    <button class="settings-action settings-danger" id="wipeBtn">⚠ Wipe all data</button>
+    <div class="settings-hint" style="text-align:center;margin-top:4px;">Backup before wiping. There is no undo.</div>
+  </div>
+</div>
+
 <script>
 'use strict';
 
-// ─── DATA ───────────────────────────────────────────────────────────────────
+// ─── WORKOUT PLAN ────────────────────────────────────────────────────────────
+// To change exercises, sets, or target weights, edit this object directly.
+// Weight is in kg, or 'Bodyweight'. Use noTrack:true for exercises with no
+// rep/weight tracking (e.g. ABS), and noReps:true for exercises where reps
+// are not counted (e.g. wrist curls).
 const WORKOUT_PLAN = {
   Monday: [
     { name: 'Pull Up (Normal Grip)', weight: 'Bodyweight', sets: 3 },
     { name: 'Pull Down (Normal Grip)', weight: '60', sets: 3 },
     { name: 'Bench Press (Incline Medium Grip)', weight: '50', sets: 3 },
     { name: 'Dumbbell Bench (Incline)', weight: '15', sets: 3 },
-    { name: 'ABS', weight: null, sets: 2, repsOnly: false, noTrack: true },
+    { name: 'ABS', weight: null, sets: 2, noTrack: true },
   ],
   Tuesday: [
     { name: 'Skull Crusher', weight: '30', sets: 3 },
@@ -659,7 +677,12 @@ const WORKOUT_PLAN = {
   ],
 };
 
-const LAST_WEEK = {
+// ─── BASELINE (pre-app history) ──────────────────────────────────────────────
+// Seeded into your workoutLog once, on first launch, as actual entries for
+// week 1 (the week starting on the phase start date). After that, it's just
+// part of your real log — "Last week" displays read from your log, never from
+// here. To re-seed (e.g. after a wipe), this stays the source of truth.
+const BASELINE_WEEK_ONE = {
   Monday: {
     'Pull Up (Normal Grip)': { sets: [{r:8},{r:6},{r:5}], weight: 'BW' },
     'Pull Down (Normal Grip)': { sets: [{r:6},{r:6},{r:6}], weight: '60kg' },
@@ -672,7 +695,7 @@ const LAST_WEEK = {
     'Dumbbell Lat Raise': { sets: [{r:15},{r:13},{r:11},{r:10}], weight: '7kg' },
     'Cable Lat Raise': { sets: [{r:9},{r:8},{r:7}], weight: '2.5kg' },
     'Barbell Curl (Normal Grip)': { sets: [{r:7},{r:6},{r:5}], weight: '25kg' },
-    'Barbell Standing Wrist Curl': { sets: [{r:'—'},{r:'—'},{r:'—'}], weight: '35kg' },
+    'Barbell Standing Wrist Curl': { sets: [{r:null},{r:null},{r:null}], weight: '35kg' },
   },
   Thursday: {
     'Bench Press (Incline Wide Grip)': { sets: [{r:7},{r:8},{r:6.5}], weight: '45kg' },
@@ -689,32 +712,43 @@ const LAST_WEEK = {
   },
 };
 
-// ─── STORAGE (resilient to iOS file:// quirks) ──────────────────────────────
-// Primary: localStorage. Fallback: in-memory cache so the app keeps working
-// even if Safari refuses storage (private mode, file:// edge cases, etc).
+const DEFAULT_PHASE_NAME = 'Bulk';
+const DEFAULT_PHASE_START = '2026-05-04'; // Monday 4 May 2026
+const DEFAULT_WEIGHT_LOG = [
+  { date: '2026-05-04', weight: 68.5 },
+  { date: '2026-05-05', weight: 68.0 },
+  { date: '2026-05-06', weight: 68.4 },
+  { date: '2026-05-08', weight: 68.9 },
+  { date: '2026-05-09', weight: 68.9 },
+  { date: '2026-05-10', weight: 69.35 },
+  { date: '2026-05-11', weight: 68.65 },
+  { date: '2026-05-12', weight: 69.05 },
+];
+
+const DAY_OFFSET = { Monday: 0, Tuesday: 1, Wednesday: 2, Thursday: 3, Friday: 4, Saturday: 5, Sunday: 6 };
+const DAY_NAMES = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const WORKOUT_DAYS = ['Monday','Tuesday','Thursday','Friday'];
+
+// ─── STORAGE ─────────────────────────────────────────────────────────────────
 const memCache = {};
 function load(key, def) {
-  try {
-    const v = localStorage.getItem(key);
-    if (v !== null) return JSON.parse(v);
-  } catch(e) { /* fall through */ }
+  try { const v = localStorage.getItem(key); if (v !== null) return JSON.parse(v); } catch(e) {}
   return (key in memCache) ? memCache[key] : def;
 }
 function save(key, val) {
   memCache[key] = val;
-  try {
-    localStorage.setItem(key, JSON.stringify(val));
-    return true;
-  } catch(e) {
-    // Storage refused — likely quota or private mode. Data still in memCache.
-    console.warn('Storage save failed:', e);
-    return false;
-  }
+  try { localStorage.setItem(key, JSON.stringify(val)); return true; }
+  catch(e) { console.warn('Storage save failed:', e); return false; }
 }
 
-// ─── BULK START DATE (Monday 4 May 2026) ────────────────────────────────────
-const BULK_START = new Date('2026-05-04T00:00:00');
-const PHASE_NAME = 'Bulk';
+// ─── STATE ───────────────────────────────────────────────────────────────────
+let phaseName = load('phaseName', DEFAULT_PHASE_NAME);
+let phaseStart = load('phaseStart', DEFAULT_PHASE_START);
+let weightLog = load('weightLog', DEFAULT_WEIGHT_LOG.slice());
+let workoutLog = load('workoutLog', {});
+
+// ─── DATE HELPERS ────────────────────────────────────────────────────────────
+function getPhaseStartDate() { return new Date(phaseStart + 'T00:00:00'); }
 
 function getMondayOf(date) {
   const d = new Date(date);
@@ -725,26 +759,6 @@ function getMondayOf(date) {
   return d;
 }
 
-function getWeekNum(dateStr) {
-  const d = new Date(dateStr + 'T12:00:00');
-  const monday = getMondayOf(d);
-  const bulkMonday = getMondayOf(BULK_START);
-  const diff = Math.round((monday - bulkMonday) / (7 * 24 * 3600 * 1000));
-  return Math.max(1, diff + 1);
-}
-
-function getWeekStart(weekNum) {
-  const d = new Date(getMondayOf(BULK_START));
-  d.setDate(d.getDate() + (weekNum - 1) * 7);
-  return localDateStr(d);
-}
-
-function getWeekEnd(weekNum) {
-  const d = new Date(getMondayOf(BULK_START));
-  d.setDate(d.getDate() + (weekNum - 1) * 7 + 6);
-  return localDateStr(d);
-}
-
 function localDateStr(d) {
   const y = d.getFullYear();
   const m = String(d.getMonth() + 1).padStart(2, '0');
@@ -752,34 +766,159 @@ function localDateStr(d) {
   return `${y}-${m}-${day}`;
 }
 
+function today() { return localDateStr(new Date()); }
+function todayDay() { return DAY_NAMES[new Date().getDay()]; }
+function formatDate(d) {
+  const dt = new Date(d + 'T12:00:00');
+  return dt.toLocaleDateString('en-AU', { day: 'numeric', month: 'short' });
+}
+
+function getWeekNum(dateStr) {
+  const d = new Date(dateStr + 'T12:00:00');
+  const monday = getMondayOf(d);
+  const phaseMonday = getMondayOf(getPhaseStartDate());
+  const diff = Math.round((monday - phaseMonday) / (7 * 24 * 3600 * 1000));
+  return Math.max(1, diff + 1);
+}
+
+function getWeekStart(weekNum) {
+  const d = new Date(getMondayOf(getPhaseStartDate()));
+  d.setDate(d.getDate() + (weekNum - 1) * 7);
+  return localDateStr(d);
+}
+
+function getWeekEnd(weekNum) {
+  const d = new Date(getMondayOf(getPhaseStartDate()));
+  d.setDate(d.getDate() + (weekNum - 1) * 7 + 6);
+  return localDateStr(d);
+}
+
 function getCurrentWeekNum() { return getWeekNum(today()); }
 
 function weekLabel(weekNum) {
-  const start = getWeekStart(weekNum);
-  const end = getWeekEnd(weekNum);
-  return `Week ${weekNum} of ${PHASE_NAME} · ${formatDate(start)} – ${formatDate(end)}`;
+  return `Week ${weekNum} of ${phaseName} · ${formatDate(getWeekStart(weekNum))} – ${formatDate(getWeekEnd(weekNum))}`;
 }
 
-// State
-let weightLog = load('weightLog', [
-  { date: '2026-05-04', weight: 68.5 },
-  { date: '2026-05-05', weight: 68.0 },
-  { date: '2026-05-06', weight: 68.4 },
-  { date: '2026-05-08', weight: 68.9 },
-  { date: '2026-05-09', weight: 68.9 },
-  { date: '2026-05-10', weight: 69.35 },
-  { date: '2026-05-11', weight: 68.65 },
-  { date: '2026-05-12', weight: 69.05 },
-]);
+// Given a day name and the date you're viewing things from, return that day's
+// date within the current calendar week.
+function getDayDateForCurrentWeek(dayName) {
+  const monday = getMondayOf(new Date());
+  monday.setDate(monday.getDate() + DAY_OFFSET[dayName]);
+  return localDateStr(monday);
+}
 
-let workoutLog = load('workoutLog', {});
+function dayKeyFor(date, dayName) {
+  return `${date}-${dayName}`;
+}
 
-// Rest timer
-let restTimer = null;
-let restTotal = 180;
-let restRemaining = 180;
+// ─── SEED & MIGRATION (runs once each) ───────────────────────────────────────
+// Seed BASELINE_WEEK_ONE into workoutLog as actual entries for week 1.
+function seedBaselineIfNeeded() {
+  if (load('baselineSeeded', false)) return;
 
-// ─── NAV ────────────────────────────────────────────────────────────────────
+  const phaseMonday = getMondayOf(getPhaseStartDate());
+  Object.entries(BASELINE_WEEK_ONE).forEach(([dayName, exercises]) => {
+    const date = new Date(phaseMonday);
+    date.setDate(date.getDate() + (DAY_OFFSET[dayName] || 0));
+    const key = dayKeyFor(localDateStr(date), dayName);
+
+    if (workoutLog[key]) return;
+
+    const exercisesOut = {};
+    Object.entries(exercises).forEach(([exName, exData]) => {
+      const w = exData.weight;
+      const weightStr = w === 'BW' ? 'BW' : String(w).replace(/kg$/, '');
+      exercisesOut[exName] = exData.sets.map(s => ({
+        reps: typeof s.r === 'number' ? s.r : null,
+        weight: weightStr,
+      }));
+    });
+    workoutLog[key] = { day: dayName, exercises: exercisesOut };
+  });
+
+  save('workoutLog', workoutLog);
+  save('baselineSeeded', true);
+}
+
+// Older versions of this app stored workoutLog keys as
+// "{today's date}-{dayName}" instead of "{actual workout date}-{dayName}".
+// Re-key any existing entries to the new format.
+function migrateWorkoutLogKeysIfNeeded() {
+  if (load('workoutLogV2', false)) { return; }
+
+  const newLog = {};
+  Object.entries(workoutLog).forEach(([oldKey, data]) => {
+    let dayName = null;
+    for (const d of DAY_NAMES) {
+      if (oldKey.endsWith('-' + d)) { dayName = d; break; }
+    }
+    if (!dayName) { newLog[oldKey] = data; return; }
+
+    const dateStr = oldKey.slice(0, oldKey.length - dayName.length - 1);
+    const oldDate = new Date(dateStr + 'T12:00:00');
+    if (isNaN(oldDate.getTime())) { newLog[oldKey] = data; return; }
+
+    const monday = getMondayOf(oldDate);
+    const actual = new Date(monday);
+    actual.setDate(actual.getDate() + DAY_OFFSET[dayName]);
+    const newKey = dayKeyFor(localDateStr(actual), dayName);
+
+    // If two old keys collapse to the same new key (rare), prefer the one
+    // already in newLog if it has more logged sets.
+    if (newLog[newKey]) {
+      const existingCount = countLoggedSets(newLog[newKey]);
+      const incomingCount = countLoggedSets(data);
+      if (incomingCount > existingCount) newLog[newKey] = data;
+    } else {
+      newLog[newKey] = data;
+    }
+  });
+
+  workoutLog = newLog;
+  save('workoutLog', workoutLog);
+  save('workoutLogV2', true);
+}
+
+function countLoggedSets(dayEntry) {
+  if (!dayEntry || !dayEntry.exercises) return 0;
+  let n = 0;
+  Object.values(dayEntry.exercises).forEach(sets => {
+    sets.forEach(s => { if (s && (s.reps != null || s.weight)) n++; });
+  });
+  return n;
+}
+
+// ─── PRIOR WEEK LOOKUP ───────────────────────────────────────────────────────
+// Looks chronologically backwards (up to 12 weeks) for the most recent
+// session of this day+exercise with logged data. Returns null if nothing.
+function getPriorWorkoutData(dayName, exerciseName) {
+  const currentMonday = getMondayOf(new Date());
+
+  for (let weeksBack = 1; weeksBack <= 12; weeksBack++) {
+    const target = new Date(currentMonday);
+    target.setDate(target.getDate() - weeksBack * 7 + DAY_OFFSET[dayName]);
+    const key = dayKeyFor(localDateStr(target), dayName);
+
+    const entry = workoutLog[key];
+    if (!entry || !entry.exercises || !entry.exercises[exerciseName]) continue;
+
+    const sets = entry.exercises[exerciseName].filter(s => s && (s.reps != null || s.weight));
+    if (sets.length === 0) continue;
+
+    const weights = sets.map(s => s.weight).filter(w => w);
+    const w = weights[0];
+    const weightLabel = !w ? 'BW' : (w === 'BW' ? 'BW' : `${w}kg`);
+
+    return {
+      sets: sets.map(s => ({ r: s.reps != null ? s.reps : '—' })),
+      weight: weightLabel,
+      weeksAgo: weeksBack,
+    };
+  }
+  return null;
+}
+
+// ─── NAV ─────────────────────────────────────────────────────────────────────
 function showPage(name, btn) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
@@ -788,22 +927,11 @@ function showPage(name, btn) {
   if (name === 'graphs') renderGraphs();
   if (name === 'weight') renderWeight();
   if (name === 'workout') renderWorkout();
+  if (name === 'settings') renderSettings();
   window.scrollTo(0, 0);
 }
 
-// ─── HELPERS ────────────────────────────────────────────────────────────────
-function today() {
-  const d = new Date();
-  return localDateStr(d);
-}
-function todayDay() {
-  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-  return days[new Date().getDay()];
-}
-function formatDate(d) {
-  const dt = new Date(d + 'T12:00:00');
-  return dt.toLocaleDateString('en-AU', { day: 'numeric', month: 'short' });
-}
+// ─── TOAST ───────────────────────────────────────────────────────────────────
 function toast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg;
@@ -811,18 +939,11 @@ function toast(msg) {
   setTimeout(() => t.classList.remove('show'), 2000);
 }
 
-function getDayDate(dayName) {
-  const dayOffset = { Monday: 0, Tuesday: 1, Wednesday: 2, Thursday: 3, Friday: 4, Saturday: 5, Sunday: 6 };
-  const weekStart = new Date(getWeekStart(getCurrentWeekNum()) + 'T12:00:00');
-  weekStart.setDate(weekStart.getDate() + dayOffset[dayName]);
-  return localDateStr(weekStart);
-}
-
 function escAttr(s) {
   return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
-// ─── WORKOUT ────────────────────────────────────────────────────────────────
+// ─── WORKOUT RENDER ──────────────────────────────────────────────────────────
 function renderWorkout() {
   const wn = getCurrentWeekNum();
   document.getElementById('workoutWeekLabel').textContent = weekLabel(wn);
@@ -830,24 +951,25 @@ function renderWorkout() {
 
   const container = document.getElementById('dayList');
   const todayName = todayDay();
-  const days = ['Monday','Tuesday','Thursday','Friday'];
 
-  container.innerHTML = days.map(day => {
+  container.innerHTML = WORKOUT_DAYS.map(day => {
     const isToday = day === todayName;
     const exercises = WORKOUT_PLAN[day];
-    const dayKey = `${today()}-${day}`;
+    const dayDateStr = getDayDateForCurrentWeek(day);
+    const dayKey = dayKeyFor(dayDateStr, day);
 
     const exerciseHTML = exercises.map(ex => {
-      const lw = (LAST_WEEK[day] || {})[ex.name];
+      const prior = getPriorWorkoutData(day, ex.name);
 
-      let lastWeekHTML = '';
-      if (lw) {
-        const lwSets = lw.sets.map((s, i) =>
+      let priorHTML = '';
+      if (prior) {
+        const setsHTML = prior.sets.map((s, i) =>
           `<div class="lw-set">S${i+1} <span>${s.r}</span></div>`
         ).join('');
-        lastWeekHTML = `
-          <div class="last-week-label">Last week · ${lw.weight}</div>
-          <div class="last-week-sets">${lwSets}</div>
+        const label = prior.weeksAgo === 1 ? 'Last week' : `${prior.weeksAgo} weeks ago`;
+        priorHTML = `
+          <div class="last-week-label">${label} · ${prior.weight}</div>
+          <div class="last-week-sets">${setsHTML}</div>
         `;
       }
 
@@ -884,7 +1006,7 @@ function renderWorkout() {
       return `
         <div class="exercise-block">
           <div class="exercise-name">${ex.name} ${weightTag}</div>
-          ${lastWeekHTML}
+          ${priorHTML}
           ${setsHTML}
         </div>`;
     }).join('');
@@ -894,7 +1016,7 @@ function renderWorkout() {
         <div class="day-header" data-action="toggle-day" data-day="${day}">
           <div>
             <div class="day-name">${day}</div>
-            <div style="font-size:10px;color:var(--text3);margin-top:2px;">${formatDate(getDayDate(day))}</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:2px;">${formatDate(dayDateStr)}</div>
           </div>
           ${isToday ? '<div class="day-badge">Today</div>' : ''}
           <div class="day-chevron">▼</div>
@@ -907,10 +1029,8 @@ function renderWorkout() {
 }
 
 function restoreLoggedSets() {
-  const todayKey = today();
-  const days = ['Monday','Tuesday','Thursday','Friday'];
-  days.forEach(day => {
-    const dayKey = `${todayKey}-${day}`;
+  WORKOUT_DAYS.forEach(day => {
+    const dayKey = dayKeyFor(getDayDateForCurrentWeek(day), day);
     const stored = workoutLog[dayKey];
     if (!stored) return;
     Object.entries(stored.exercises || {}).forEach(([exName, sets]) => {
@@ -928,22 +1048,16 @@ function restoreLoggedSets() {
 }
 
 function toggleDay(day) {
-  const card = document.getElementById('daycard-' + day);
-  card.classList.toggle('open');
+  document.getElementById('daycard-' + day).classList.toggle('open');
 }
 
 function logSet(exKey, exName, day) {
   const repsEl = document.getElementById('reps-' + exKey);
   const wtEl = document.getElementById('wt-' + exKey);
   const btn = document.querySelector(`button[data-exkey="${CSS.escape(exKey)}"]`);
-
   const reps = repsEl ? repsEl.value : null;
   const weight = wtEl ? wtEl.value : null;
-
-  if (repsEl && !repsEl.disabled && repsEl.value === '') {
-    toast('Enter reps first!');
-    return;
-  }
+  if (repsEl && !repsEl.disabled && repsEl.value === '') { toast('Enter reps first!'); return; }
 
   const parts = exKey.split('__');
   const dayKey = parts[0];
@@ -959,25 +1073,27 @@ function logSet(exKey, exName, day) {
   if (repsEl) repsEl.classList.add('done');
   if (wtEl) wtEl.classList.add('done');
   if (btn) { btn.classList.add('logged'); btn.textContent = '✓'; }
-
   toast('Set logged ✓');
   const restSecs = (day === 'Monday' || day === 'Thursday') ? 180 : 90;
   startRest(restSecs);
 }
 
-// ─── WEEK / PHASE CHIPS ─────────────────────────────────────────────────────
 function renderWeekPhaseChips() {
   const row = document.getElementById('weekPhaseRow');
   const wn = getCurrentWeekNum();
   const start = formatDate(getWeekStart(wn));
   const end = formatDate(getWeekEnd(wn));
   row.innerHTML = `
-    <div class="phase-chip active" style="pointer-events:none;">Week ${wn} of ${PHASE_NAME}</div>
-    <div class="phase-chip" style="pointer-events:none;color:var(--text2);">${start} – ${end}</div>
+    <div class="phase-chip active">Week ${wn} of ${phaseName}</div>
+    <div class="phase-chip">${start} – ${end}</div>
   `;
 }
 
 // ─── REST TIMER ──────────────────────────────────────────────────────────────
+let restTimer = null;
+let restTotal = 180;
+let restRemaining = 180;
+
 function startRest(secs) {
   if (restTimer) clearInterval(restTimer);
   restTotal = secs;
@@ -991,13 +1107,11 @@ function startRest(secs) {
       clearInterval(restTimer);
       skipRest();
       toast("Rest done — let's go!");
-      // Vibrate if supported (iOS Safari ignores this silently)
       if (navigator.vibrate) try { navigator.vibrate([200, 100, 200]); } catch(e) {}
     }
     updateRestUI();
   }, 1000);
 }
-
 function updateRestUI() {
   const m = Math.floor(restRemaining / 60);
   const s = restRemaining % 60;
@@ -1006,23 +1120,20 @@ function updateRestUI() {
   const offset = circ * (1 - restRemaining / restTotal);
   document.getElementById('restProgress').style.strokeDashoffset = offset;
 }
-
 function skipRest() {
   if (restTimer) clearInterval(restTimer);
   document.getElementById('restOverlay').classList.remove('active');
 }
 
-// ─── WEIGHT ──────────────────────────────────────────────────────────────
+// ─── WEIGHT ──────────────────────────────────────────────────────────────────
 function logWeight() {
   const val = parseFloat(document.getElementById('weightInput').value);
   if (isNaN(val) || val < 30 || val > 200) { toast('Enter a valid weight!'); return; }
-
   const d = today();
   const existing = weightLog.findIndex(e => e.date === d);
   const entry = { date: d, weight: val };
   if (existing >= 0) weightLog[existing] = entry;
   else weightLog.push(entry);
-
   weightLog.sort((a, b) => a.date.localeCompare(b.date));
   save('weightLog', weightLog);
   document.getElementById('weightInput').value = '';
@@ -1030,13 +1141,11 @@ function logWeight() {
   toast('Weight logged ✓');
   renderWeight();
 }
-
 function deleteWeight(date) {
   weightLog = weightLog.filter(e => e.date !== date);
   save('weightLog', weightLog);
   renderWeight();
 }
-
 function getWeeklyAverages() {
   const weeks = {};
   weightLog.forEach(e => {
@@ -1048,16 +1157,13 @@ function getWeeklyAverages() {
     .map(w => ({ ...w, avg: w.entries.reduce((a,b) => a+b, 0) / w.entries.length }))
     .sort((a, b) => a.weekNum - b.weekNum);
 }
-
 function renderWeight() {
   const weeklies = getWeeklyAverages();
-
   const todayEl = document.getElementById('weightTodayDate');
   if (todayEl) {
     const now = new Date();
     todayEl.textContent = now.toLocaleDateString('en-AU', { weekday: 'long', day: 'numeric', month: 'long' });
   }
-
   const sumContainer = document.getElementById('weeklySummaries');
   if (weeklies.length === 0) {
     sumContainer.innerHTML = '<div class="no-data">No weekly data yet</div>';
@@ -1073,46 +1179,31 @@ function renderWeight() {
       } else {
         changeHTML = `<div class="week-change same">—</div>`;
       }
-      return `
-        <div class="week-summary-card">
-          <div class="week-summary-left">
-            <div class="week-summary-phase">Week ${w.weekNum} of ${PHASE_NAME}</div>
-            <div class="week-summary-dates">${formatDate(w.startDate)} – ${formatDate(w.endDate)}</div>
-            <div class="week-summary-avg">Avg <span>${w.avg.toFixed(2)}kg</span></div>
-          </div>
-          ${changeHTML}
-        </div>`;
+      return `<div class="week-summary-card"><div><div class="week-summary-phase">Week ${w.weekNum} of ${phaseName}</div><div class="week-summary-dates">${formatDate(w.startDate)} – ${formatDate(w.endDate)}</div><div class="week-summary-avg">Avg <span>${w.avg.toFixed(2)}kg</span></div></div>${changeHTML}</div>`;
     }).join('');
   }
-
   const logContainer = document.getElementById('dailyLog');
   if (weightLog.length === 0) {
     logContainer.innerHTML = '<div class="no-data">No entries yet</div>';
   } else {
-    logContainer.innerHTML = [...weightLog].reverse().map(e => `
-      <div class="daily-log-row">
-        <div class="daily-log-date">${formatDate(e.date)}</div>
-        <div class="daily-log-weight">${e.weight}kg</div>
-        <button class="daily-log-del" data-action="delete-weight" data-date="${e.date}">✕</button>
-      </div>`).join('');
+    logContainer.innerHTML = [...weightLog].reverse().map(e =>
+      `<div class="daily-log-row"><div class="daily-log-date">${formatDate(e.date)}</div><div class="daily-log-weight">${e.weight}kg</div><button class="daily-log-del" data-action="delete-weight" data-date="${e.date}">✕</button></div>`
+    ).join('');
   }
 }
 
 // ─── TINY OFFLINE CHART ENGINE ───────────────────────────────────────────────
-// Replaces Chart.js — same look, no network dependency.
 function drawChart(canvasId, labels, data, color) {
   const canvas = document.getElementById(canvasId);
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
   const dpr = window.devicePixelRatio || 1;
-
   const cssWidth = canvas.clientWidth || canvas.parentElement.clientWidth;
   const cssHeight = 180;
   canvas.style.height = cssHeight + 'px';
   canvas.width = cssWidth * dpr;
   canvas.height = cssHeight * dpr;
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
   ctx.clearRect(0, 0, cssWidth, cssHeight);
 
   if (!labels || labels.length < 2) {
@@ -1127,26 +1218,22 @@ function drawChart(canvasId, labels, data, color) {
   const padLeft = 38, padRight = 14, padTop = 14, padBottom = 26;
   const plotW = cssWidth - padLeft - padRight;
   const plotH = cssHeight - padTop - padBottom;
-
   let minVal = Math.min(...data);
   let maxVal = Math.max(...data);
   if (minVal === maxVal) { minVal -= 1; maxVal += 1; }
   const range = maxVal - minVal;
   const yMin = minVal - range * 0.1;
   const yMax = maxVal + range * 0.1;
-
   const xFor = i => padLeft + (i / (labels.length - 1)) * plotW;
   const yFor = v => padTop + (1 - (v - yMin) / (yMax - yMin)) * plotH;
 
-  // Horizontal gridlines + y labels
   ctx.font = '9px ui-monospace, SF Mono, Menlo, monospace';
   ctx.fillStyle = '#555';
   ctx.textBaseline = 'middle';
   ctx.textAlign = 'right';
   ctx.lineWidth = 1;
-  const ySteps = 4;
-  for (let i = 0; i <= ySteps; i++) {
-    const v = yMin + (yMax - yMin) * (i / ySteps);
+  for (let i = 0; i <= 4; i++) {
+    const v = yMin + (yMax - yMin) * (i / 4);
     const y = yFor(v);
     ctx.strokeStyle = '#1a1a1a';
     ctx.beginPath();
@@ -1157,14 +1244,12 @@ function drawChart(canvasId, labels, data, color) {
     ctx.fillText(String(label), padLeft - 6, y);
   }
 
-  // X-axis baseline
   ctx.strokeStyle = '#2a2a2a';
   ctx.beginPath();
   ctx.moveTo(padLeft, padTop + plotH);
   ctx.lineTo(cssWidth - padRight, padTop + plotH);
   ctx.stroke();
 
-  // X labels (thinned if many)
   ctx.fillStyle = '#555';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
@@ -1175,7 +1260,6 @@ function drawChart(canvasId, labels, data, color) {
     }
   });
 
-  // Filled area
   ctx.beginPath();
   ctx.moveTo(xFor(0), yFor(data[0]));
   for (let i = 1; i < data.length; i++) ctx.lineTo(xFor(i), yFor(data[i]));
@@ -1185,7 +1269,6 @@ function drawChart(canvasId, labels, data, color) {
   ctx.fillStyle = color + '20';
   ctx.fill();
 
-  // Line
   ctx.beginPath();
   ctx.moveTo(xFor(0), yFor(data[0]));
   for (let i = 1; i < data.length; i++) ctx.lineTo(xFor(i), yFor(data[i]));
@@ -1194,7 +1277,6 @@ function drawChart(canvasId, labels, data, color) {
   ctx.lineJoin = 'round';
   ctx.stroke();
 
-  // Points
   data.forEach((v, i) => {
     ctx.beginPath();
     ctx.arc(xFor(i), yFor(v), 4, 0, Math.PI * 2);
@@ -1203,10 +1285,7 @@ function drawChart(canvasId, labels, data, color) {
   });
 }
 
-function renderGraphs() {
-  renderWeightGraph();
-  renderStrengthGraph();
-}
+function renderGraphs() { renderWeightGraph(); renderStrengthGraph(); }
 
 function renderWeightGraph() {
   const weeklies = getWeeklyAverages();
@@ -1217,20 +1296,6 @@ function renderWeightGraph() {
 
 function renderStrengthGraph() {
   const weeklyVolume = {};
-
-  let lastWeekVol = 0;
-  Object.values(LAST_WEEK).forEach(dayExs => {
-    Object.values(dayExs).forEach(ex => {
-      ex.sets.forEach(s => {
-        const wt = parseFloat(ex.weight);
-        if (!isNaN(wt) && typeof s.r === 'number') {
-          lastWeekVol += s.r * wt;
-        }
-      });
-    });
-  });
-  weeklyVolume[1] = lastWeekVol;
-
   Object.entries(workoutLog).forEach(([dayKey, dayData]) => {
     const dateStr = dayKey.split('-').slice(0,3).join('-');
     const wn = getWeekNum(dateStr);
@@ -1243,14 +1308,12 @@ function renderStrengthGraph() {
       });
     });
   });
-
   const sorted = Object.entries(weeklyVolume).sort((a,b) => a[0]-b[0]);
   const labels = sorted.map(([k]) => `Wk${k}`);
   const data = sorted.map(([,v]) => Math.round(v));
   drawChart('strengthChart', labels, data, '#4dff91');
 }
 
-// Redraw on resize / orientation change
 let resizeRAF = null;
 window.addEventListener('resize', () => {
   if (resizeRAF) cancelAnimationFrame(resizeRAF);
@@ -1259,19 +1322,51 @@ window.addEventListener('resize', () => {
   });
 });
 
+// ─── SETTINGS ────────────────────────────────────────────────────────────────
+function renderSettings() {
+  document.getElementById('settingsPhaseName').value = phaseName;
+  document.getElementById('settingsPhaseStart').value = phaseStart;
+}
+
+function savePhaseSettings() {
+  const newName = document.getElementById('settingsPhaseName').value.trim();
+  const newStart = document.getElementById('settingsPhaseStart').value;
+  if (!newName) { toast('Phase name cannot be empty'); return; }
+  if (!newStart || isNaN(new Date(newStart + 'T00:00:00').getTime())) { toast('Invalid start date'); return; }
+  phaseName = newName;
+  phaseStart = newStart;
+  save('phaseName', phaseName);
+  save('phaseStart', phaseStart);
+  toast('Phase saved ✓');
+  renderWorkout();
+  renderWeight();
+  renderGraphs();
+}
+
+function confirmWipe() {
+  if (!confirm('This will delete every weight entry and workout set. Backup first if you want to keep anything. Continue?')) return;
+  if (!confirm('Absolutely sure? There is no undo.')) return;
+  weightLog = DEFAULT_WEIGHT_LOG.slice();
+  workoutLog = {};
+  save('weightLog', weightLog);
+  save('workoutLog', workoutLog);
+  save('baselineSeeded', false);
+  save('workoutLogV2', true);
+  seedBaselineIfNeeded();
+  toast('Wiped & re-seeded ✓');
+  renderWorkout();
+  renderWeight();
+  renderGraphs();
+}
+
 // ─── BACKUP & RESTORE ────────────────────────────────────────────────────────
 function exportData() {
   const data = {
     exportedAt: new Date().toISOString(),
-    weightLog,
-    workoutLog,
+    phaseName, phaseStart, weightLog, workoutLog,
   };
   const json = JSON.stringify(data, null, 2);
-  const dateStr = new Date().toISOString().split('T')[0];
-  const filename = `lift-backup-${dateStr}.json`;
-
-  // iOS Safari standalone (Add to Home Screen) doesn't reliably trigger
-  // <a download>. Fall back to Web Share API when present.
+  const filename = `lift-backup-${new Date().toISOString().split('T')[0]}.json`;
   try {
     const blob = new Blob([json], { type: 'application/json' });
     if (navigator.share && navigator.canShare && navigator.canShare({ files: [new File([blob], filename, { type: 'application/json' })] })) {
@@ -1283,13 +1378,11 @@ function exportData() {
     fallbackDownload(blob, filename);
   } catch(e) {
     console.warn(e);
-    // Last resort — open as data URL in a new tab so user can save manually
     const dataUrl = 'data:application/json;charset=utf-8,' + encodeURIComponent(json);
     window.open(dataUrl, '_blank');
     toast('Save the page that opened');
   }
 }
-
 function fallbackDownload(blob, filename) {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
@@ -1301,7 +1394,6 @@ function fallbackDownload(blob, filename) {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
   toast('Backup downloaded ✓');
 }
-
 function importData(event) {
   const file = event.target.files[0];
   if (!file) return;
@@ -1311,50 +1403,44 @@ function importData(event) {
       const data = JSON.parse(e.target.result);
       if (data.weightLog) { weightLog = data.weightLog; save('weightLog', weightLog); }
       if (data.workoutLog) { workoutLog = data.workoutLog; save('workoutLog', workoutLog); }
+      if (data.phaseName) { phaseName = data.phaseName; save('phaseName', phaseName); }
+      if (data.phaseStart) { phaseStart = data.phaseStart; save('phaseStart', phaseStart); }
       toast('Backup restored ✓');
-      renderWeight();
+      renderSettings();
       renderWorkout();
+      renderWeight();
       renderGraphs();
-    } catch(err) {
-      toast('Invalid backup file!');
-    }
-    event.target.value = ''; // allow re-importing same file
+    } catch(err) { toast('Invalid backup file!'); }
+    event.target.value = '';
   };
   reader.readAsText(file);
 }
 
-// ─── EVENT DELEGATION (no inline onclick = no event/this gotchas) ───────────
+// ─── EVENT DELEGATION ────────────────────────────────────────────────────────
 document.addEventListener('click', (e) => {
   const target = e.target.closest('[data-action], [data-page]');
   if (!target) return;
-
   const page = target.getAttribute('data-page');
-  if (page) {
-    showPage(page, target);
-    return;
-  }
-
+  if (page) { showPage(page, target); return; }
   const action = target.getAttribute('data-action');
-  if (action === 'log-set') {
-    logSet(target.dataset.exkey, target.dataset.exname, target.dataset.day);
-  } else if (action === 'toggle-day') {
-    toggleDay(target.dataset.day);
-  } else if (action === 'delete-weight') {
-    deleteWeight(target.dataset.date);
-  }
+  if (action === 'log-set') logSet(target.dataset.exkey, target.dataset.exname, target.dataset.day);
+  else if (action === 'toggle-day') toggleDay(target.dataset.day);
+  else if (action === 'delete-weight') deleteWeight(target.dataset.date);
 });
 
 document.getElementById('restSkipBtn').addEventListener('click', skipRest);
 document.getElementById('weightLogBtn').addEventListener('click', logWeight);
 document.getElementById('exportBtn').addEventListener('click', exportData);
 document.getElementById('importFile').addEventListener('change', importData);
-
-// Submit weight on Enter
+document.getElementById('phaseSaveBtn').addEventListener('click', savePhaseSettings);
+document.getElementById('wipeBtn').addEventListener('click', confirmWipe);
 document.getElementById('weightInput').addEventListener('keydown', (e) => {
   if (e.key === 'Enter') { e.preventDefault(); logWeight(); }
 });
 
 // ─── INIT ────────────────────────────────────────────────────────────────────
+migrateWorkoutLogKeysIfNeeded();
+seedBaselineIfNeeded();
 renderWorkout();
 renderWeight();
 </script>
