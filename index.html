@@ -2183,6 +2183,35 @@ function renderRuns() {
     return;
   }
 
+  // Setup step: manual code entry
+  if (stravaSetupStep === 'manual') {
+    const authUrl = `https://www.strava.com/oauth/authorize?client_id=${encodeURIComponent(stravaClientId)}&redirect_uri=https://scootingpizza.github.io/GidLifter/&response_type=code&scope=activity:read_all`;
+    el.innerHTML = `
+      <div class="header" style="padding:24px 0 16px;">
+        <div><div class="header-title" style="color:#fc4c02;">Strava</div><div class="header-sub">Step 2 · Authorise</div></div>
+      </div>
+      <div class="strava-setup-card">
+        <div class="strava-step">Step 1 · Open this link</div>
+        <div class="strava-setup-hint" style="margin-top:8px;margin-bottom:14px;">Tap the button below. Strava will ask you to authorise the app, then redirect you to a page that may show an error — that's totally fine and expected.</div>
+        <a href="${authUrl}" target="_blank" style="display:block;">
+          <button class="strava-btn">Open Strava Authorisation ↗</button>
+        </a>
+      </div>
+      <div class="strava-setup-card">
+        <div class="strava-step">Step 2 · Copy the code from the URL</div>
+        <div class="strava-setup-hint" style="margin-top:8px;margin-bottom:14px;">
+          After authorising, look at the URL in your browser. It will look like:<br><br>
+          <span style="color:var(--text);font-family:var(--font-mono);font-size:10px;word-break:break-all;">...github.io/GidLifter/?state=&<b>code=abc123xyz</b>&scope=...</span><br><br>
+          Copy just the part after <b>code=</b> and before <b>&scope</b>.
+        </div>
+        <div class="settings-label">Paste your code here</div>
+        <input class="settings-input" type="text" id="stravaManualCode" placeholder="abc123xyz..." autocomplete="off" autocorrect="off" spellcheck="false">
+      </div>
+      <button class="strava-btn" onclick="stravaSubmitManualCode()" style="margin-bottom:10px;">Connect ✓</button>
+      <button class="strava-btn secondary" onclick="stravaSetupStep='credentials';renderRuns()">← Back</button>`;
+    return;
+  }
+
   // Setup step: enter credentials
   if (stravaSetupStep === 'credentials' || (!stravaToken && (stravaClientId || stravaClientSec))) {
     stravaSetupStep = 'credentials';
@@ -2234,11 +2263,14 @@ function stravaStartAuth() {
   stravaClientSec = csec;
   save('stravaClientId', cid);
   save('stravaClientSec', csec);
+  stravaSetupStep = 'manual';
+  renderRuns();
+}
 
-  const redirectUri = encodeURIComponent('https://scootingpizza.github.io/GidLifter/');
-  const scope = 'activity:read_all';
-  const url = `https://www.strava.com/oauth/authorize?client_id=${cid}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}`;
-  window.location.href = url;
+async function stravaSubmitManualCode() {
+  const code = document.getElementById('stravaManualCode').value.trim();
+  if (!code) { toast('Paste the code first'); return; }
+  await stravaHandleCallback(code);
 }
 
 async function stravaHandleCallback(code) {
@@ -2260,12 +2292,14 @@ async function stravaHandleCallback(code) {
       stravaAthlete = data.athlete || null;
       save('stravaToken', stravaToken);
       save('stravaAthlete', stravaAthlete);
-      // Clean URL
+      stravaSetupStep = 'idle';
       window.history.replaceState({}, '', window.location.pathname);
       toast('Strava connected ✓');
       await fetchStravaRuns();
     } else {
-      toast('Auth failed — check credentials');
+      const reason = data.message || data.error || 'unknown error';
+      toast(`Auth failed: ${reason}`);
+      console.error('Strava auth error:', data);
     }
   } catch(e) {
     toast('Connection error');
@@ -2408,23 +2442,6 @@ function drawRunChart(canvasId, labels, data, color, invertY) {
   ctx.fillText(maxV.toFixed(1), pad.left - 4, pad.top + 10);
   ctx.fillText(minV.toFixed(1), pad.left - 4, pad.top + ch);
 }
-
-// Check for Strava OAuth callback on load
-(function() {
-  const params = new URLSearchParams(window.location.search);
-  const code = params.get('code');
-  const scope = params.get('scope');
-  if (code && scope && scope.includes('activity')) {
-    // Switch to runs tab after auth
-    window.history.replaceState({}, '', window.location.pathname);
-    // Need to wait for DOM
-    document.addEventListener('DOMContentLoaded', () => {}, false);
-    setTimeout(() => {
-      showPage('runs', document.querySelector('[data-page="runs"]'));
-      stravaHandleCallback(code);
-    }, 100);
-  }
-})();
 
 
 migrateWorkoutLogKeysIfNeeded();
