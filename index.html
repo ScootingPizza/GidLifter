@@ -2235,7 +2235,7 @@ function stravaStartAuth() {
   save('stravaClientId', cid);
   save('stravaClientSec', csec);
 
-  const redirectUri = encodeURIComponent(window.location.href.split('?')[0].split('#')[0]);
+  const redirectUri = encodeURIComponent('https://scootingpizza.github.io/GidLifter/');
   const scope = 'activity:read_all';
   const url = `https://www.strava.com/oauth/authorize?client_id=${cid}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}`;
   window.location.href = url;
