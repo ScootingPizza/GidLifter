@@ -2185,14 +2185,14 @@ function renderRuns() {
 
   // Setup step: manual code entry
   if (stravaSetupStep === 'manual') {
-    const authUrl = `https://www.strava.com/oauth/authorize?client_id=${encodeURIComponent(stravaClientId)}&redirect_uri=https://scootingpizza.github.io/GidLifter/&response_type=code&scope=activity:read_all`;
+    const authUrl = `https://www.strava.com/oauth/authorize?client_id=${encodeURIComponent(stravaClientId)}&redirect_uri=http://localhost&response_type=code&scope=activity:read_all`;
     el.innerHTML = `
       <div class="header" style="padding:24px 0 16px;">
         <div><div class="header-title" style="color:#fc4c02;">Strava</div><div class="header-sub">Step 2 · Authorise</div></div>
       </div>
       <div class="strava-setup-card">
         <div class="strava-step">Step 1 · Open this link</div>
-        <div class="strava-setup-hint" style="margin-top:8px;margin-bottom:14px;">Tap the button below. Strava will ask you to authorise the app, then redirect you to a page that may show an error — that's totally fine and expected.</div>
+        <div class="strava-setup-hint" style="margin-top:8px;margin-bottom:14px;">Tap the button below and authorise the app on Strava. It will then redirect to a page that <b>can't be reached</b> — that's completely expected, don't worry.</div>
         <a href="${authUrl}" target="_blank" style="display:block;">
           <button class="strava-btn">Open Strava Authorisation ↗</button>
         </a>
@@ -2200,9 +2200,9 @@ function renderRuns() {
       <div class="strava-setup-card">
         <div class="strava-step">Step 2 · Copy the code from the URL</div>
         <div class="strava-setup-hint" style="margin-top:8px;margin-bottom:14px;">
-          After authorising, look at the URL in your browser. It will look like:<br><br>
-          <span style="color:var(--text);font-family:var(--font-mono);font-size:10px;word-break:break-all;">...github.io/GidLifter/?state=&<b>code=abc123xyz</b>&scope=...</span><br><br>
-          Copy just the part after <b>code=</b> and before <b>&scope</b>.
+          On the "can't be reached" page, tap the <b>URL bar</b> and look for the code. It will look like:<br><br>
+          <span style="color:var(--text);font-family:var(--font-mono);font-size:10px;word-break:break-all;">http://localhost/?state=&<b>code=abc123xyz</b>&scope=...</span><br><br>
+          Copy just the value between <b>code=</b> and <b>&scope</b>.
         </div>
         <div class="settings-label">Paste your code here</div>
         <input class="settings-input" type="text" id="stravaManualCode" placeholder="abc123xyz..." autocomplete="off" autocorrect="off" spellcheck="false">
