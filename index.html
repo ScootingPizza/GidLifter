@@ -1039,6 +1039,13 @@
     </label>
     <button class="settings-action settings-danger" id="wipeBtn">⚠ Wipe all data</button>
     <div class="settings-hint" style="text-align:center;margin-top:4px;">Backup before wiping. There is no undo.</div>
+
+    <div class="section-label" style="margin-top:28px;">About</div>
+    <div class="settings-card" style="text-align:center;">
+      <div style="font-family:var(--font-display);font-size:22px;font-weight:900;color:var(--accent);letter-spacing:-0.02em;">GidLifter</div>
+      <div style="font-size:11px;color:var(--text2);margin-top:6px;">Version 1.0 · Published 27 May 2026</div>
+      <div style="font-size:10px;color:var(--text3);margin-top:4px;">Built for Gid 💪</div>
+    </div>
   </div>
 </div>
 
@@ -2053,7 +2060,8 @@ let stravaClientId  = load('stravaClientId', '');
 let stravaClientSec = load('stravaClientSec', '');
 let stravaAthlete   = load('stravaAthlete', null);
 let stravaRuns      = load('stravaRuns', []);
-let stravaSetupStep = 'idle'; // idle | credentials | auth | done
+let stravaSetupStep = 'idle'; // idle | credentials | manual | done
+let runsTimeRange   = 'month'; // week | month | year | all
 
 function formatPace(speedMs) {
   if (!speedMs || speedMs === 0) return '—';
@@ -2084,28 +2092,38 @@ function renderRuns() {
   // Connected state
   if (stravaToken) {
     const athlete = stravaAthlete || {};
-    const runs = stravaRuns;
-
-    // Stats: last 30 days
     const now = Date.now();
-    const recent = runs.filter(r => now - new Date(r.start_date).getTime() < 30 * 86400000);
-    const totalKm = recent.reduce((a, r) => a + r.distance, 0) / 1000;
-    const avgPace = recent.length
-      ? recent.reduce((a, r) => a + (r.average_speed || 0), 0) / recent.length
-      : 0;
 
-    // Progress: compare last 4 runs avg pace vs previous 4
+    // Filter runs by selected time range
+    function getFilteredRuns(range) {
+      return stravaRuns.filter(r => {
+        const t = new Date(r.start_date).getTime();
+        if (range === 'week')  return now - t < 7  * 86400000;
+        if (range === 'month') return now - t < 30 * 86400000;
+        if (range === 'year')  { const y = new Date().getFullYear(); return new Date(r.start_date).getFullYear() === y; }
+        return true; // all
+      });
+    }
+
+    const filteredRuns = getFilteredRuns(runsTimeRange);
+    const allRuns = stravaRuns;
+
+    // Stats based on filtered range
+    const totalKm  = filteredRuns.reduce((a, r) => a + r.distance, 0) / 1000;
+    const avgSpeed = filteredRuns.length ? filteredRuns.reduce((a, r) => a + (r.average_speed || 0), 0) / filteredRuns.length : 0;
+
+    // Pace trend arrow (last 4 vs prev 4 from filtered)
     let paceArrow = '';
-    if (runs.length >= 8) {
-      const last4 = runs.slice(0, 4).reduce((a, r) => a + (r.average_speed || 0), 0) / 4;
-      const prev4 = runs.slice(4, 8).reduce((a, r) => a + (r.average_speed || 0), 0) / 4;
+    if (filteredRuns.length >= 8) {
+      const last4 = filteredRuns.slice(0, 4).reduce((a, r) => a + (r.average_speed || 0), 0) / 4;
+      const prev4 = filteredRuns.slice(4, 8).reduce((a, r) => a + (r.average_speed || 0), 0) / 4;
       if (last4 > prev4) paceArrow = '<span style="color:var(--green)"> ↑</span>';
       else if (last4 < prev4) paceArrow = '<span style="color:var(--red)"> ↓</span>';
     }
 
-    const runsHTML = runs.length === 0
-      ? '<div class="no-data">No runs found. Go for a run! 🏃</div>'
-      : runs.map(r => `
+    const runsHTML = filteredRuns.length === 0
+      ? '<div class="no-data">No runs in this period. Go for a run! 🏃</div>'
+      : filteredRuns.map((r, idx) => `
         <div class="run-card">
           <div class="run-card-top">
             <div class="run-card-icon">🏃</div>
@@ -2121,12 +2139,12 @@ function renderRuns() {
           <div class="run-card-stats">
             <div class="run-card-stat">⏱ <span>${formatDuration(r.moving_time)}</span></div>
             <div class="run-card-stat">📈 <span>${r.total_elevation_gain ? r.total_elevation_gain.toFixed(0) + 'm' : '—'}</span></div>
-            <div class="run-pace-badge">🔥 ${formatPace(r.average_speed)}${r === runs[0] ? paceArrow : ''}</div>
+            <div class="run-pace-badge">🔥 ${formatPace(r.average_speed)}${idx === 0 ? paceArrow : ''}</div>
           </div>
         </div>`).join('');
 
-    // Pace chart data
-    const chartRuns = runs.slice(0, 20).reverse();
+    // Chart data from filtered runs (oldest → newest)
+    const chartRuns = filteredRuns.slice().reverse();
     const pacePoints = chartRuns.map(r => r.average_speed ? parseFloat((1000 / r.average_speed / 60).toFixed(2)) : null).filter(Boolean);
     const distPoints = chartRuns.map(r => parseFloat(formatDist(r.distance)));
     const chartLabels = chartRuns.map(r => {
@@ -2134,28 +2152,36 @@ function renderRuns() {
       return `${d.getDate()}/${d.getMonth()+1}`;
     });
 
+    const ranges = ['week','month','year','all'];
+    const rangeLabels = { week: 'This Week', month: 'This Month', year: 'This Year', all: 'All Time' };
+    const toggleHTML = ranges.map(r =>
+      `<button class="phase-chip${runsTimeRange === r ? ' active' : ''}" onclick="runsTimeRange='${r}';renderRuns()">${rangeLabels[r]}</button>`
+    ).join('');
+
     el.innerHTML = `
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
-        <div class="strava-connected-badge">● Strava Connected${athlete.firstname ? ' · ' + escHTML(athlete.firstname) : ''}</div>
+        <div class="strava-connected-badge">● Strava${athlete.firstname ? ' · ' + escHTML(athlete.firstname) : ''}</div>
         <button class="run-refresh-btn" onclick="fetchStravaRuns()">↻ Sync</button>
       </div>
 
+      <div class="phase-row" style="margin-bottom:16px;">${toggleHTML}</div>
+
       <div class="run-stat-row">
         <div class="run-stat-box">
-          <div class="run-stat-val">${recent.length}</div>
-          <div class="run-stat-label">Runs (30d)</div>
+          <div class="run-stat-val">${filteredRuns.length}</div>
+          <div class="run-stat-label">Runs</div>
         </div>
         <div class="run-stat-box">
           <div class="run-stat-val">${totalKm.toFixed(1)}</div>
-          <div class="run-stat-label">km (30d)</div>
+          <div class="run-stat-label">km total</div>
         </div>
         <div class="run-stat-box">
-          <div class="run-stat-val">${avgPace > 0 ? formatPace(avgPace).replace(' /km','') : '—'}</div>
+          <div class="run-stat-val">${avgSpeed > 0 ? formatPace(avgSpeed).replace(' /km','') : '—'}</div>
           <div class="run-stat-label">Avg pace</div>
         </div>
       </div>
 
-      ${pacePoints.length >= 3 ? `
+      ${pacePoints.length >= 2 ? `
       <div class="runs-chart-card">
         <div class="runs-chart-title">Pace Over Time</div>
         <div class="runs-chart-sub">min/km · lower is faster</div>
@@ -2165,19 +2191,18 @@ function renderRuns() {
         <div class="runs-chart-title">Distance Per Run</div>
         <div class="runs-chart-sub">km</div>
         <canvas id="runDistChart" height="140"></canvas>
-      </div>` : ''}
+      </div>` : '<div class="no-data" style="padding:16px 0;">Not enough runs in this period to show charts</div>'}
 
-      <div class="section-label">Recent Runs</div>
+      <div class="section-label">Runs · ${rangeLabels[runsTimeRange]}</div>
       ${runsHTML}
 
       <div class="strava-disconnect" onclick="stravaDisconnect()">Disconnect Strava</div>
       <div style="height:16px;"></div>`;
 
-    // Draw charts after render
-    if (pacePoints.length >= 3) {
+    if (pacePoints.length >= 2) {
       setTimeout(() => {
-        drawRunChart('runPaceChart', chartLabels.slice(-pacePoints.length), pacePoints, '#fc4c02', true);
-        drawRunChart('runDistChart', chartLabels.slice(-distPoints.length), distPoints, '#e8ff47', false);
+        drawRunChart('runPaceChart', chartLabels, pacePoints, '#fc4c02', true);
+        drawRunChart('runDistChart', chartLabels, distPoints, '#e8ff47', false);
       }, 50);
     }
     return;
