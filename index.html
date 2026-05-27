@@ -536,6 +536,220 @@
   .form-btn-row { display: flex; gap: 8px; margin-top: 14px; }
   .form-btn-row > * { flex: 1; margin: 0 !important; }
 
+  /* Runs / Strava tab */
+  .strava-connect-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 20px;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .strava-logo {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 900;
+    color: #fc4c02;
+    letter-spacing: -0.03em;
+    margin-bottom: 8px;
+  }
+  .strava-connect-desc {
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .strava-btn {
+    display: inline-block;
+    background: #fc4c02;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 13px 28px;
+    cursor: pointer;
+    letter-spacing: 0.03em;
+    width: 100%;
+  }
+  .strava-btn:active { opacity: 0.85; }
+  .strava-btn.secondary {
+    background: var(--bg3);
+    color: var(--text2);
+    border: 1px solid var(--border);
+    font-size: 12px;
+    padding: 10px 20px;
+    margin-top: 10px;
+  }
+  .strava-setup-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 10px;
+  }
+  .strava-step {
+    font-size: 10px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+  .strava-setup-hint {
+    font-size: 11px;
+    color: var(--text2);
+    line-height: 1.6;
+    margin-top: 8px;
+  }
+  .strava-setup-hint a { color: var(--accent); text-decoration: none; }
+  .strava-connected-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(252,76,2,0.12);
+    border: 1px solid rgba(252,76,2,0.3);
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fc4c02;
+    margin-bottom: 16px;
+  }
+  .run-stat-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .run-stat-box {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 12px;
+    text-align: center;
+  }
+  .run-stat-val {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: -0.03em;
+  }
+  .run-stat-label {
+    font-size: 9px;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 3px;
+  }
+  .run-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    margin-bottom: 8px;
+  }
+  .run-card-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .run-card-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .run-card-main { flex: 1; min-width: 0; }
+  .run-card-name {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .run-card-date { font-size: 10px; color: var(--text2); margin-top: 2px; }
+  .run-card-stats {
+    display: flex;
+    gap: 14px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+  .run-card-stat { font-size: 11px; color: var(--text2); }
+  .run-card-stat span { color: var(--text); font-weight: 600; }
+  .run-card-dist {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text);
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .run-card-dist-unit { font-size: 10px; color: var(--text3); font-weight: 400; display: block; text-align: right; }
+  .run-pace-badge {
+    background: rgba(232,255,71,0.08);
+    border: 1px solid rgba(232,255,71,0.2);
+    border-radius: 6px;
+    padding: 3px 7px;
+    font-size: 11px;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    margin-left: auto;
+    white-space: nowrap;
+  }
+  .run-refresh-btn {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text2);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 8px 16px;
+    cursor: pointer;
+  }
+  .run-refresh-btn:active { border-color: var(--accent); color: var(--accent); }
+  .runs-chart-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 16px;
+    margin-bottom: 12px;
+  }
+  .runs-chart-title {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+  .runs-chart-sub {
+    font-size: 10px;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+  }
+  .strava-disconnect {
+    font-size: 11px;
+    color: var(--text3);
+    text-align: center;
+    margin-top: 16px;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  .runs-loading {
+    text-align: center;
+    padding: 40px 0;
+    font-size: 12px;
+    color: var(--text3);
+  }
+  .runs-loading-spinner {
+    width: 28px;
+    height: 28px;
+    border: 2px solid var(--border);
+    border-top-color: #fc4c02;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 12px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
   /* Data tab */
   .data-phase {
     background: var(--bg2);
@@ -680,6 +894,7 @@
 <nav class="nav">
   <button class="nav-btn active" data-page="workout">Workout</button>
   <button class="nav-btn" data-page="weight">Weight</button>
+  <button class="nav-btn" data-page="runs">Runs</button>
   <button class="nav-btn" data-page="graphs">Graphs</button>
   <button class="nav-btn" data-page="data">Data</button>
   <button class="nav-btn" data-page="settings">Settings</button>
@@ -734,6 +949,18 @@
 
     <div class="daily-log-title">Daily Log</div>
     <div id="dailyLog"></div>
+  </div>
+</div>
+
+<div class="page" id="page-runs">
+  <div class="header">
+    <div>
+      <div class="header-title">Runs</div>
+      <div class="header-sub">Strava · Run tracking</div>
+    </div>
+  </div>
+  <div style="padding: 0 16px;" id="runsContent">
+    <!-- Rendered by JS -->
   </div>
 </div>
 
@@ -1122,6 +1349,7 @@ function showPage(name, btn) {
   if (name === 'workout') renderWorkout();
   if (name === 'data') renderData();
   if (name === 'settings') renderSettings();
+  if (name === 'runs') renderRuns();
   window.scrollTo(0, 0);
 }
 
@@ -1181,17 +1409,20 @@ function renderWorkout() {
             <div class="set-header-label">kg</div>
             <div></div>
           </div>`;
+        // Use last week's logged weight if available, otherwise fall back to plan default
+        const priorWeightRaw = prior && prior.weight && prior.weight !== 'BW' ? prior.weight.replace('kg','') : null;
         const rows = Array.from({length: ex.sets}, (_, i) => {
           const setNum = i + 1;
           const exKey = `${dayKey}__${ex.name}__${setNum}`;
           const defaultWeight = ex.weight === 'Bodyweight' ? 'BW' : ex.weight;
+          const inputValue = ex.weight === 'Bodyweight' ? '' : (priorWeightRaw || (ex.weight ? ex.weight : ''));
           const exKeyAttr = escAttr(exKey);
           const exNameAttr = escAttr(ex.name);
           return `
             <div class="set-row" id="row-${exKeyAttr}">
               <div class="set-num">${setNum}</div>
               <input class="set-input" type="number" inputmode="decimal" id="reps-${exKeyAttr}" placeholder="${ex.noReps ? '—' : 'reps'}" step="0.5" ${ex.noReps ? 'disabled' : ''}>
-              <input class="set-input" type="number" inputmode="decimal" id="wt-${exKeyAttr}" placeholder="${defaultWeight}" step="0.5" value="${ex.weight !== 'Bodyweight' && ex.weight ? ex.weight : ''}">
+              <input class="set-input" type="number" inputmode="decimal" id="wt-${exKeyAttr}" placeholder="${defaultWeight}" step="0.5" value="${inputValue}">
               <button class="set-log-btn" data-action="log-set" data-exkey="${exKeyAttr}" data-exname="${exNameAttr}" data-day="${day}">Log</button>
             </div>`;
         }).join('');
@@ -1816,7 +2047,386 @@ document.getElementById('weightInput').addEventListener('keydown', (e) => {
   if (e.key === 'Enter') { e.preventDefault(); logWeight(); }
 });
 
-// ─── INIT ────────────────────────────────────────────────────────────────────
+// ─── STRAVA ──────────────────────────────────────────────────────────────────
+let stravaToken     = load('stravaToken', null);
+let stravaClientId  = load('stravaClientId', '');
+let stravaClientSec = load('stravaClientSec', '');
+let stravaAthlete   = load('stravaAthlete', null);
+let stravaRuns      = load('stravaRuns', []);
+let stravaSetupStep = 'idle'; // idle | credentials | auth | done
+
+function formatPace(speedMs) {
+  if (!speedMs || speedMs === 0) return '—';
+  const secPerKm = 1000 / speedMs;
+  const mins = Math.floor(secPerKm / 60);
+  const secs = Math.round(secPerKm % 60);
+  return `${mins}:${String(secs).padStart(2,'0')} /km`;
+}
+function formatDist(m) {
+  return (m / 1000).toFixed(2);
+}
+function formatDuration(s) {
+  const h = Math.floor(s / 3600);
+  const m = Math.floor((s % 3600) / 60);
+  const sec = s % 60;
+  if (h > 0) return `${h}h ${m}m`;
+  return `${m}m ${sec}s`;
+}
+function formatRunDate(iso) {
+  const d = new Date(iso);
+  return d.toLocaleDateString('en-AU', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
+}
+
+function renderRuns() {
+  const el = document.getElementById('runsContent');
+  if (!el) return;
+
+  // Connected state
+  if (stravaToken) {
+    const athlete = stravaAthlete || {};
+    const runs = stravaRuns;
+
+    // Stats: last 30 days
+    const now = Date.now();
+    const recent = runs.filter(r => now - new Date(r.start_date).getTime() < 30 * 86400000);
+    const totalKm = recent.reduce((a, r) => a + r.distance, 0) / 1000;
+    const avgPace = recent.length
+      ? recent.reduce((a, r) => a + (r.average_speed || 0), 0) / recent.length
+      : 0;
+
+    // Progress: compare last 4 runs avg pace vs previous 4
+    let paceArrow = '';
+    if (runs.length >= 8) {
+      const last4 = runs.slice(0, 4).reduce((a, r) => a + (r.average_speed || 0), 0) / 4;
+      const prev4 = runs.slice(4, 8).reduce((a, r) => a + (r.average_speed || 0), 0) / 4;
+      if (last4 > prev4) paceArrow = '<span style="color:var(--green)"> ↑</span>';
+      else if (last4 < prev4) paceArrow = '<span style="color:var(--red)"> ↓</span>';
+    }
+
+    const runsHTML = runs.length === 0
+      ? '<div class="no-data">No runs found. Go for a run! 🏃</div>'
+      : runs.map(r => `
+        <div class="run-card">
+          <div class="run-card-top">
+            <div class="run-card-icon">🏃</div>
+            <div class="run-card-main">
+              <div class="run-card-name">${escHTML(r.name || 'Run')}</div>
+              <div class="run-card-date">${formatRunDate(r.start_date)}</div>
+            </div>
+            <div>
+              <div class="run-card-dist">${formatDist(r.distance)}</div>
+              <span class="run-card-dist-unit">km</span>
+            </div>
+          </div>
+          <div class="run-card-stats">
+            <div class="run-card-stat">⏱ <span>${formatDuration(r.moving_time)}</span></div>
+            <div class="run-card-stat">📈 <span>${r.total_elevation_gain ? r.total_elevation_gain.toFixed(0) + 'm' : '—'}</span></div>
+            <div class="run-pace-badge">🔥 ${formatPace(r.average_speed)}${r === runs[0] ? paceArrow : ''}</div>
+          </div>
+        </div>`).join('');
+
+    // Pace chart data
+    const chartRuns = runs.slice(0, 20).reverse();
+    const pacePoints = chartRuns.map(r => r.average_speed ? parseFloat((1000 / r.average_speed / 60).toFixed(2)) : null).filter(Boolean);
+    const distPoints = chartRuns.map(r => parseFloat(formatDist(r.distance)));
+    const chartLabels = chartRuns.map(r => {
+      const d = new Date(r.start_date);
+      return `${d.getDate()}/${d.getMonth()+1}`;
+    });
+
+    el.innerHTML = `
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+        <div class="strava-connected-badge">● Strava Connected${athlete.firstname ? ' · ' + escHTML(athlete.firstname) : ''}</div>
+        <button class="run-refresh-btn" onclick="fetchStravaRuns()">↻ Sync</button>
+      </div>
+
+      <div class="run-stat-row">
+        <div class="run-stat-box">
+          <div class="run-stat-val">${recent.length}</div>
+          <div class="run-stat-label">Runs (30d)</div>
+        </div>
+        <div class="run-stat-box">
+          <div class="run-stat-val">${totalKm.toFixed(1)}</div>
+          <div class="run-stat-label">km (30d)</div>
+        </div>
+        <div class="run-stat-box">
+          <div class="run-stat-val">${avgPace > 0 ? formatPace(avgPace).replace(' /km','') : '—'}</div>
+          <div class="run-stat-label">Avg pace</div>
+        </div>
+      </div>
+
+      ${pacePoints.length >= 3 ? `
+      <div class="runs-chart-card">
+        <div class="runs-chart-title">Pace Over Time</div>
+        <div class="runs-chart-sub">min/km · lower is faster</div>
+        <canvas id="runPaceChart" height="140"></canvas>
+      </div>
+      <div class="runs-chart-card">
+        <div class="runs-chart-title">Distance Per Run</div>
+        <div class="runs-chart-sub">km</div>
+        <canvas id="runDistChart" height="140"></canvas>
+      </div>` : ''}
+
+      <div class="section-label">Recent Runs</div>
+      ${runsHTML}
+
+      <div class="strava-disconnect" onclick="stravaDisconnect()">Disconnect Strava</div>
+      <div style="height:16px;"></div>`;
+
+    // Draw charts after render
+    if (pacePoints.length >= 3) {
+      setTimeout(() => {
+        drawRunChart('runPaceChart', chartLabels.slice(-pacePoints.length), pacePoints, '#fc4c02', true);
+        drawRunChart('runDistChart', chartLabels.slice(-distPoints.length), distPoints, '#e8ff47', false);
+      }, 50);
+    }
+    return;
+  }
+
+  // Setup step: enter credentials
+  if (stravaSetupStep === 'credentials' || (!stravaToken && (stravaClientId || stravaClientSec))) {
+    stravaSetupStep = 'credentials';
+    el.innerHTML = `
+      <div class="header" style="padding:24px 0 16px;">
+        <div><div class="header-title" style="color:#fc4c02;">Strava</div><div class="header-sub">Connect your account</div></div>
+      </div>
+      <div class="strava-setup-card">
+        <div class="strava-step">Step 1 · API Credentials</div>
+        <div class="settings-label" style="margin-top:12px;">Client ID</div>
+        <input class="settings-input" type="text" id="stravaClientIdInput" placeholder="12345" value="${escHTML(stravaClientId)}" inputmode="numeric">
+        <div class="settings-label" style="margin-top:12px;">Client Secret</div>
+        <input class="settings-input" type="text" id="stravaClientSecInput" placeholder="abc123..." value="${escHTML(stravaClientSec)}">
+        <div class="strava-setup-hint">
+          Get these from <a href="https://www.strava.com/settings/api" target="_blank">strava.com/settings/api</a>.<br>
+          Set your <b>Authorization Callback Domain</b> to the domain this app is hosted on (or <b>localhost</b>).
+        </div>
+      </div>
+      <button class="strava-btn" onclick="stravaStartAuth()">Continue →</button>
+      <button class="strava-btn secondary" onclick="stravaSetupStep='idle';renderRuns()">Cancel</button>`;
+    return;
+  }
+
+  // Not connected landing
+  el.innerHTML = `
+    <div style="height:12px;"></div>
+    <div class="strava-connect-card">
+      <div class="strava-logo">STRAVA</div>
+      <div class="strava-connect-desc">
+        Connect your Strava account to automatically sync your runs and track your progress over time.
+      </div>
+      <button class="strava-btn" onclick="stravaSetupStep='credentials';renderRuns()">Connect Strava</button>
+    </div>
+    <div class="strava-setup-card" style="margin-top:4px;">
+      <div class="strava-step">How it works</div>
+      <div class="strava-setup-hint" style="margin-top:8px;">
+        1. Create a free Strava API app at <a href="https://www.strava.com/settings/api" target="_blank">strava.com/settings/api</a><br>
+        2. Paste your Client ID and Secret here<br>
+        3. Authorise once — your runs sync automatically
+      </div>
+    </div>`;
+}
+
+function stravaStartAuth() {
+  const cid = document.getElementById('stravaClientIdInput').value.trim();
+  const csec = document.getElementById('stravaClientSecInput').value.trim();
+  if (!cid || !csec) { toast('Enter both Client ID and Secret'); return; }
+  stravaClientId = cid;
+  stravaClientSec = csec;
+  save('stravaClientId', cid);
+  save('stravaClientSec', csec);
+
+  const redirectUri = encodeURIComponent(window.location.href.split('?')[0].split('#')[0]);
+  const scope = 'activity:read_all';
+  const url = `https://www.strava.com/oauth/authorize?client_id=${cid}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}`;
+  window.location.href = url;
+}
+
+async function stravaHandleCallback(code) {
+  toast('Connecting to Strava…');
+  try {
+    const res = await fetch('https://www.strava.com/oauth/token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        client_id: stravaClientId,
+        client_secret: stravaClientSec,
+        code,
+        grant_type: 'authorization_code'
+      })
+    });
+    const data = await res.json();
+    if (data.access_token) {
+      stravaToken = data.access_token;
+      stravaAthlete = data.athlete || null;
+      save('stravaToken', stravaToken);
+      save('stravaAthlete', stravaAthlete);
+      // Clean URL
+      window.history.replaceState({}, '', window.location.pathname);
+      toast('Strava connected ✓');
+      await fetchStravaRuns();
+    } else {
+      toast('Auth failed — check credentials');
+    }
+  } catch(e) {
+    toast('Connection error');
+    console.error(e);
+  }
+}
+
+async function fetchStravaRuns() {
+  if (!stravaToken) return;
+  const el = document.getElementById('runsContent');
+  if (el) el.innerHTML = '<div class="runs-loading"><div class="runs-loading-spinner"></div>Syncing runs…</div>';
+  try {
+    const res = await fetch('https://www.strava.com/api/v3/athlete/activities?per_page=50&page=1', {
+      headers: { 'Authorization': `Bearer ${stravaToken}` }
+    });
+    if (res.status === 401) {
+      stravaToken = null;
+      save('stravaToken', null);
+      toast('Session expired — please reconnect');
+      renderRuns();
+      return;
+    }
+    const activities = await res.json();
+    stravaRuns = activities.filter(a => a.type === 'Run' || a.sport_type === 'Run');
+    save('stravaRuns', stravaRuns);
+    renderRuns();
+    toast(`Synced ${stravaRuns.length} runs ✓`);
+  } catch(e) {
+    toast('Sync failed');
+    console.error(e);
+    renderRuns();
+  }
+}
+
+function stravaDisconnect() {
+  if (!confirm('Disconnect Strava? This will clear your synced runs.')) return;
+  stravaToken = null;
+  stravaRuns = [];
+  stravaAthlete = null;
+  save('stravaToken', null);
+  save('stravaRuns', []);
+  save('stravaAthlete', null);
+  stravaSetupStep = 'idle';
+  renderRuns();
+  toast('Strava disconnected');
+}
+
+function drawRunChart(canvasId, labels, data, color, invertY) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas || !data.length) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.offsetWidth || 350;
+  const H = 140;
+  canvas.width = W * window.devicePixelRatio;
+  canvas.height = H * window.devicePixelRatio;
+  ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+
+  const pad = { top: 10, right: 16, bottom: 28, left: 36 };
+  const cw = W - pad.left - pad.right;
+  const ch = H - pad.top - pad.bottom;
+
+  const minV = Math.min(...data);
+  const maxV = Math.max(...data);
+  const range = maxV - minV || 1;
+
+  const xStep = cw / (data.length - 1 || 1);
+
+  function xPos(i) { return pad.left + i * xStep; }
+  function yPos(v) {
+    const norm = (v - minV) / range;
+    return pad.top + ch - norm * ch;
+  }
+
+  ctx.clearRect(0, 0, W, H);
+
+  // Grid lines
+  ctx.strokeStyle = '#2a2a2a';
+  ctx.lineWidth = 1;
+  for (let i = 0; i <= 3; i++) {
+    const y = pad.top + (ch / 3) * i;
+    ctx.beginPath();
+    ctx.moveTo(pad.left, y);
+    ctx.lineTo(pad.left + cw, y);
+    ctx.stroke();
+  }
+
+  // Line
+  const grad = ctx.createLinearGradient(0, pad.top, 0, pad.top + ch);
+  grad.addColorStop(0, color + '33');
+  grad.addColorStop(1, color + '00');
+
+  ctx.beginPath();
+  data.forEach((v, i) => {
+    i === 0 ? ctx.moveTo(xPos(i), yPos(v)) : ctx.lineTo(xPos(i), yPos(v));
+  });
+  const linePath = new Path2D(ctx.currentPath);
+
+  // Fill
+  ctx.beginPath();
+  data.forEach((v, i) => {
+    i === 0 ? ctx.moveTo(xPos(i), yPos(v)) : ctx.lineTo(xPos(i), yPos(v));
+  });
+  ctx.lineTo(xPos(data.length - 1), pad.top + ch);
+  ctx.lineTo(xPos(0), pad.top + ch);
+  ctx.closePath();
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  // Stroke
+  ctx.beginPath();
+  data.forEach((v, i) => {
+    i === 0 ? ctx.moveTo(xPos(i), yPos(v)) : ctx.lineTo(xPos(i), yPos(v));
+  });
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 2;
+  ctx.lineJoin = 'round';
+  ctx.stroke();
+
+  // Dots
+  data.forEach((v, i) => {
+    ctx.beginPath();
+    ctx.arc(xPos(i), yPos(v), 3, 0, Math.PI * 2);
+    ctx.fillStyle = color;
+    ctx.fill();
+  });
+
+  // X labels (sparse)
+  ctx.fillStyle = '#555';
+  ctx.font = `${9 * window.devicePixelRatio / window.devicePixelRatio}px ui-monospace, monospace`;
+  ctx.textAlign = 'center';
+  const step = Math.max(1, Math.floor(data.length / 5));
+  data.forEach((_, i) => {
+    if (i % step === 0 || i === data.length - 1) {
+      ctx.fillText(labels[i] || '', xPos(i), H - 6);
+    }
+  });
+
+  // Y labels
+  ctx.textAlign = 'right';
+  ctx.fillText(maxV.toFixed(1), pad.left - 4, pad.top + 10);
+  ctx.fillText(minV.toFixed(1), pad.left - 4, pad.top + ch);
+}
+
+// Check for Strava OAuth callback on load
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const code = params.get('code');
+  const scope = params.get('scope');
+  if (code && scope && scope.includes('activity')) {
+    // Switch to runs tab after auth
+    window.history.replaceState({}, '', window.location.pathname);
+    // Need to wait for DOM
+    document.addEventListener('DOMContentLoaded', () => {}, false);
+    setTimeout(() => {
+      showPage('runs', document.querySelector('[data-page="runs"]'));
+      stravaHandleCallback(code);
+    }, 100);
+  }
+})();
+
+
 migrateWorkoutLogKeysIfNeeded();
 seedBaselineIfNeeded();
 renderWorkout();
