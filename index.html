@@ -887,6 +887,322 @@
     gap: 5px;
     flex-wrap: wrap;
   }
+
+  /* ── STREAK CHIP on home tab ── */
+  .streak-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(232,255,71,0.08);
+    border: 1px solid rgba(232,255,71,0.25);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent);
+  }
+  .streak-chip .streak-num {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  .streak-chip.broken {
+    background: rgba(255,77,77,0.06);
+    border-color: rgba(255,77,77,0.2);
+    color: var(--red);
+  }
+  .streak-chip.zero {
+    background: var(--bg3);
+    border-color: var(--border);
+    color: var(--text3);
+  }
+
+  /* ── CALENDAR TAB ── */
+  .cal-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    gap: 8px;
+  }
+  .cal-nav-btn {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text2);
+    font-family: var(--font-mono);
+    font-size: 16px;
+    padding: 8px 16px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .cal-nav-btn:active { border-color: var(--accent); color: var(--accent); }
+  .cal-month-label {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    flex: 1;
+  }
+  .cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    margin-bottom: 20px;
+  }
+  .cal-dow {
+    font-size: 9px;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-align: center;
+    padding: 4px 0;
+  }
+  .cal-cell {
+    aspect-ratio: 1;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-family: var(--font-mono);
+    color: var(--text3);
+    position: relative;
+    background: transparent;
+  }
+  .cal-cell.other-month { opacity: 0.25; }
+  .cal-cell.is-today {
+    color: var(--text);
+    font-weight: 700;
+    border: 1px solid var(--border);
+  }
+  .cal-cell.worked-out {
+    background: var(--accent);
+    color: #000;
+    font-weight: 700;
+  }
+  .cal-cell.scheduled-missed {
+    background: rgba(255,77,77,0.12);
+    color: var(--red);
+    border: 1px solid rgba(255,77,77,0.2);
+  }
+  .cal-cell.is-today.worked-out {
+    box-shadow: 0 0 0 2px var(--accent), 0 0 0 4px rgba(232,255,71,0.2);
+  }
+
+  .cal-legend {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .cal-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    color: var(--text2);
+  }
+  .cal-legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  .cal-stats-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .cal-stat-box {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 10px;
+    text-align: center;
+  }
+  .cal-stat-val {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: -0.03em;
+  }
+  .cal-stat-label {
+    font-size: 9px;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 3px;
+  }
+
+  /* ── PLAN EDITOR ── */
+  .plan-editor-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    z-index: 200;
+    overflow-y: auto;
+    padding: env(safe-area-inset-top, 0px) 0 calc(env(safe-area-inset-bottom, 0px) + 24px);
+  }
+  .plan-editor-overlay.active { display: block; }
+  .plan-editor-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 20px 16px;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 10;
+  }
+  .plan-editor-title {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 800;
+  }
+  .plan-editor-close {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text2);
+    font-size: 13px;
+    padding: 8px 14px;
+    cursor: pointer;
+    font-family: var(--font-mono);
+  }
+  .plan-save-btn {
+    background: var(--accent);
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 14px;
+    width: 100%;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    margin-top: 8px;
+  }
+  .plan-save-btn:active { opacity: 0.8; }
+
+  .plan-day-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  .plan-day-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .plan-day-title {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .plan-day-body { display: none; padding: 0 14px 14px; }
+  .plan-day-card.open .plan-day-body { display: block; }
+  .plan-day-card.open .plan-day-chevron { transform: rotate(180deg); }
+  .plan-day-chevron { color: var(--text3); font-size: 12px; transition: transform 0.2s; }
+
+  .plan-ex-row {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-top: 8px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+    align-items: start;
+  }
+  .plan-ex-name-input {
+    background: transparent;
+    border: none;
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    outline: none;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 6px;
+  }
+  .plan-ex-name-input::placeholder { color: var(--text3); }
+  .plan-ex-detail-row {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .plan-ex-mini-input {
+    background: var(--bg4);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    padding: 5px 8px;
+    outline: none;
+    width: 64px;
+    text-align: center;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .plan-ex-mini-input:focus { border-color: var(--accent); }
+  .plan-ex-mini-label { font-size: 10px; color: var(--text3); }
+  .plan-ex-del {
+    background: none;
+    border: none;
+    color: var(--red);
+    font-size: 16px;
+    cursor: pointer;
+    padding: 2px 6px;
+    opacity: 0.6;
+  }
+  .plan-ex-del:active { opacity: 1; }
+  .plan-add-ex-btn {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+    color: var(--text3);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    padding: 10px;
+    margin-top: 8px;
+    cursor: pointer;
+    text-align: center;
+  }
+  .plan-add-ex-btn:active { border-color: var(--accent); color: var(--accent); }
+
+  .plan-flags {
+    display: flex;
+    gap: 8px;
+    margin-top: 6px;
+    flex-wrap: wrap;
+  }
+  .plan-flag-label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    color: var(--text3);
+    cursor: pointer;
+    user-select: none;
+  }
+  .plan-flag-label input { accent-color: var(--accent); width: 14px; height: 14px; }
 </style>
 </head>
 <body>
@@ -895,6 +1211,7 @@
   <button class="nav-btn active" data-page="workout">Workout</button>
   <button class="nav-btn" data-page="weight">Weight</button>
   <button class="nav-btn" data-page="runs">Runs</button>
+  <button class="nav-btn" data-page="calendar">Calendar</button>
   <button class="nav-btn" data-page="graphs">Graphs</button>
   <button class="nav-btn" data-page="data">Data</button>
   <button class="nav-btn" data-page="settings">Settings</button>
@@ -919,11 +1236,21 @@
       <div class="header-title">Lift</div>
       <div class="header-sub" id="workoutWeekLabel">—</div>
     </div>
+    <div id="streakChip"></div>
   </div>
   <div style="padding: 0 16px 16px;">
     <div class="phase-row" id="weekPhaseRow"></div>
   </div>
   <div id="dayList" style="padding: 0 16px;"></div>
+</div>
+
+<!-- Plan editor fullscreen overlay -->
+<div class="plan-editor-overlay" id="planEditorOverlay">
+  <div class="plan-editor-header">
+    <div class="plan-editor-title" id="planEditorTitle">Edit Workout Plan</div>
+    <button class="plan-editor-close" id="planEditorCancelBtn">Cancel</button>
+  </div>
+  <div style="padding: 16px 16px 0;" id="planEditorBody"></div>
 </div>
 
 <div class="page" id="page-weight">
@@ -997,6 +1324,18 @@
   </div>
 </div>
 
+<div class="page" id="page-calendar">
+  <div class="header">
+    <div>
+      <div class="header-title">Calendar</div>
+      <div class="header-sub">Workout history</div>
+    </div>
+  </div>
+  <div style="padding: 0 16px;" id="calendarContent">
+    <!-- Rendered by JS -->
+  </div>
+</div>
+
 <div class="page" id="page-settings">
   <div class="header">
     <div>
@@ -1016,6 +1355,9 @@
       <div class="settings-hint">Week numbering counts from the Monday of this date. Changing this recalculates all weeks.</div>
     </div>
     <button class="settings-btn" id="phaseSaveBtn">Save Phase</button>
+
+    <div class="section-label" style="margin-top:28px;">Workout Plan</div>
+    <button class="settings-action" id="editPlanBtn">✏ Edit current plan</button>
 
     <div class="section-label" style="margin-top:28px;">New Phase</div>
     <button class="settings-action" id="newPhaseBtn">+ Start new phase</button>
@@ -1043,8 +1385,7 @@
     <div class="section-label" style="margin-top:28px;">About</div>
     <div class="settings-card" style="text-align:center;">
       <div style="font-family:var(--font-display);font-size:22px;font-weight:900;color:var(--accent);letter-spacing:-0.02em;">GidLifter</div>
-      <div style="font-size:11px;color:var(--text2);margin-top:6px;">Version 1.0 · Published 27 May 2026</div>
-      <div style="font-size:10px;color:var(--text3);margin-top:4px;">Built for Gid 💪</div>
+      <div style="font-size:11px;color:var(--text2);margin-top:6px;">Version 1.1 · Updated 29 May 2026</div>
     </div>
   </div>
 </div>
@@ -1053,11 +1394,9 @@
 'use strict';
 
 // ─── WORKOUT PLAN ────────────────────────────────────────────────────────────
-// To change exercises, sets, or target weights, edit this object directly.
-// Weight is in kg, or 'Bodyweight'. Use noTrack:true for exercises with no
-// rep/weight tracking (e.g. ABS), and noReps:true for exercises where reps
-// are not counted (e.g. wrist curls).
-const WORKOUT_PLAN = {
+// Default plan (used on first launch or if no plan saved).
+// Plans are stored per-phase under key 'workoutPlan-<phaseStart>'.
+const DEFAULT_WORKOUT_PLAN = {
   Monday: [
     { name: 'Pull Up (Normal Grip)', weight: 'Bodyweight', sets: 3 },
     { name: 'Pull Down (Normal Grip)', weight: '60', sets: 3 },
@@ -1088,6 +1427,14 @@ const WORKOUT_PLAN = {
     { name: 'Dips', weight: 'Bodyweight', sets: 3 },
   ],
 };
+
+function getPlanKey(phaseStartStr) { return 'workoutPlan-' + phaseStartStr; }
+function loadWorkoutPlan(phaseStartStr) {
+  return load(getPlanKey(phaseStartStr), null) || DEFAULT_WORKOUT_PLAN;
+}
+function saveWorkoutPlan(phaseStartStr, plan) {
+  save(getPlanKey(phaseStartStr), plan);
+}
 
 // ─── BASELINE (pre-app history) ──────────────────────────────────────────────
 // Seeded into your workoutLog once, on first launch, as actual entries for
@@ -1139,7 +1486,10 @@ const DEFAULT_WEIGHT_LOG = [
 
 const DAY_OFFSET = { Monday: 0, Tuesday: 1, Wednesday: 2, Thursday: 3, Friday: 4, Saturday: 5, Sunday: 6 };
 const DAY_NAMES = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-const WORKOUT_DAYS = ['Monday','Tuesday','Thursday','Friday'];
+const ALL_DAYS_ORDERED = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+function getWorkoutDays() {
+  return ALL_DAYS_ORDERED.filter(d => WORKOUT_PLAN[d] && WORKOUT_PLAN[d].length > 0);
+}
 
 // ─── STORAGE ─────────────────────────────────────────────────────────────────
 const memCache = {};
@@ -1159,6 +1509,9 @@ let phaseStart = load('phaseStart', DEFAULT_PHASE_START);
 let phaseHistory = load('phaseHistory', []); // array of {name, start, end}
 let weightLog = load('weightLog', DEFAULT_WEIGHT_LOG.slice());
 let workoutLog = load('workoutLog', {});
+
+// Active plan — loaded after state so phaseStart is available
+let WORKOUT_PLAN = loadWorkoutPlan(phaseStart);
 
 // ─── DATE HELPERS ────────────────────────────────────────────────────────────
 function getPhaseStartDate() { return new Date(phaseStart + 'T00:00:00'); }
@@ -1357,6 +1710,7 @@ function showPage(name, btn) {
   if (name === 'data') renderData();
   if (name === 'settings') renderSettings();
   if (name === 'runs') renderRuns();
+  if (name === 'calendar') renderCalendar();
   window.scrollTo(0, 0);
 }
 
@@ -1377,14 +1731,16 @@ function escHTML(s) {
 
 // ─── WORKOUT RENDER ──────────────────────────────────────────────────────────
 function renderWorkout() {
+  WORKOUT_PLAN = loadWorkoutPlan(phaseStart);
   const wn = getCurrentWeekNum();
   document.getElementById('workoutWeekLabel').textContent = weekLabel(wn);
   renderWeekPhaseChips();
+  renderStreakChip();
 
   const container = document.getElementById('dayList');
   const todayName = todayDay();
 
-  container.innerHTML = WORKOUT_DAYS.map(day => {
+  container.innerHTML = getWorkoutDays().map(day => {
     const isToday = day === todayName;
     const exercises = WORKOUT_PLAN[day];
     const dayDateStr = getDayDateForCurrentWeek(day);
@@ -1464,7 +1820,7 @@ function renderWorkout() {
 }
 
 function restoreLoggedSets() {
-  WORKOUT_DAYS.forEach(day => {
+  getWorkoutDays().forEach(day => {
     const dayKey = dayKeyFor(getDayDateForCurrentWeek(day), day);
     const stored = workoutLog[dayKey];
     if (!stored) return;
@@ -1896,6 +2252,7 @@ function savePhaseSettings() {
   phaseStart = newStart;
   save('phaseName', phaseName);
   save('phaseStart', phaseStart);
+  WORKOUT_PLAN = loadWorkoutPlan(phaseStart);
   toast('Phase saved ✓');
   renderWorkout();
   renderWeight();
@@ -1925,7 +2282,6 @@ function confirmNewPhase() {
 
   if (!confirm(`Archive "${phaseName}" and start "${newName}" on ${formatDateLong(newStart)}?`)) return;
 
-  // Compute previous phase end (day before new start)
   const endDate = new Date(newStart + 'T00:00:00');
   endDate.setDate(endDate.getDate() - 1);
   const endStr = localDateStr(endDate);
@@ -1943,6 +2299,16 @@ function confirmNewPhase() {
   renderWorkout();
   renderWeight();
   renderGraphs();
+
+  // Open plan editor with previous phase plan as starting point
+  const prevPlanKey = getPlanKey(phaseHistory[phaseHistory.length - 1].start);
+  const prevPlan = load(prevPlanKey, null) || WORKOUT_PLAN;
+  openPlanEditor(`Plan for ${newName}`, prevPlan, (plan) => {
+    saveWorkoutPlan(phaseStart, plan);
+    WORKOUT_PLAN = plan;
+    renderWorkout();
+    toast('Plan saved ✓');
+  });
 }
 
 function confirmWipe() {
@@ -1956,6 +2322,7 @@ function confirmWipe() {
   save('phaseHistory', phaseHistory);
   save('baselineSeeded', false);
   save('workoutLogV2', true);
+  WORKOUT_PLAN = loadWorkoutPlan(phaseStart);
   seedBaselineIfNeeded();
   toast('Wiped & re-seeded ✓');
   renderWorkout();
@@ -1965,9 +2332,16 @@ function confirmWipe() {
 
 // ─── BACKUP & RESTORE ────────────────────────────────────────────────────────
 function exportData() {
+  // Collect all phase plan keys
+  const plans = {};
+  getAllPhases().forEach(p => {
+    const key = getPlanKey(p.start);
+    const plan = load(key, null);
+    if (plan) plans[key] = plan;
+  });
   const data = {
     exportedAt: new Date().toISOString(),
-    phaseName, phaseStart, phaseHistory, weightLog, workoutLog,
+    phaseName, phaseStart, phaseHistory, weightLog, workoutLog, plans,
   };
   const json = JSON.stringify(data, null, 2);
   const filename = `lift-backup-${new Date().toISOString().split('T')[0]}.json`;
@@ -2010,6 +2384,8 @@ function importData(event) {
       if (data.phaseName) { phaseName = data.phaseName; save('phaseName', phaseName); }
       if (data.phaseStart) { phaseStart = data.phaseStart; save('phaseStart', phaseStart); }
       if (Array.isArray(data.phaseHistory)) { phaseHistory = data.phaseHistory; save('phaseHistory', phaseHistory); }
+      if (data.plans) { Object.entries(data.plans).forEach(([k, v]) => save(k, v)); }
+      WORKOUT_PLAN = loadWorkoutPlan(phaseStart);
       toast('Backup restored ✓');
       renderSettings();
       renderWorkout();
@@ -2031,6 +2407,12 @@ document.addEventListener('click', (e) => {
   if (action === 'log-set') logSet(target.dataset.exkey, target.dataset.exname, target.dataset.day);
   else if (action === 'toggle-day') toggleDay(target.dataset.day);
   else if (action === 'delete-weight') deleteWeight(target.dataset.date);
+  else if (action === 'toggle-plan-day') {
+    const card = document.getElementById('plan-day-card-' + target.dataset.day);
+    if (card) card.classList.toggle('open');
+  }
+  else if (action === 'plan-add-ex') addPlanExercise(target.dataset.day);
+  else if (action === 'plan-del-ex') deletePlanExercise(target.dataset.day, target.dataset.idx);
   else if (action === 'toggle-data-phase') {
     const el = document.getElementById(target.dataset.phaseId);
     if (el) el.classList.toggle('open');
@@ -2050,6 +2432,15 @@ document.getElementById('wipeBtn').addEventListener('click', confirmWipe);
 document.getElementById('newPhaseBtn').addEventListener('click', showNewPhaseForm);
 document.getElementById('newPhaseCancelBtn').addEventListener('click', hideNewPhaseForm);
 document.getElementById('newPhaseConfirmBtn').addEventListener('click', confirmNewPhase);
+document.getElementById('editPlanBtn').addEventListener('click', () => {
+  openPlanEditor(`Plan · ${phaseName}`, WORKOUT_PLAN, (plan) => {
+    saveWorkoutPlan(phaseStart, plan);
+    WORKOUT_PLAN = plan;
+    renderWorkout();
+    toast('Plan updated ✓');
+  });
+});
+document.getElementById('planEditorCancelBtn').addEventListener('click', closePlanEditor);
 document.getElementById('weightInput').addEventListener('keydown', (e) => {
   if (e.key === 'Enter') { e.preventDefault(); logWeight(); }
 });
@@ -2468,6 +2859,263 @@ function drawRunChart(canvasId, labels, data, color, invertY) {
   ctx.fillText(minV.toFixed(1), pad.left - 4, pad.top + ch);
 }
 
+// ─── STREAK CALCULATION ──────────────────────────────────────────────────────
+function getScheduledDaysBeforeToday() {
+  const result = [];
+  const todayStr = today();
+  const phaseMonday = getMondayOf(getPhaseStartDate());
+  const start = new Date(phaseMonday);
+  const end = new Date(todayStr + 'T12:00:00');
+  const workoutDays = getWorkoutDays();
+  for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+    const dayName = DAY_NAMES[d.getDay()];
+    if (workoutDays.includes(dayName)) result.push(localDateStr(d));
+  }
+  return result;
+}
+
+function dayHasAnyLoggedSet(dateStr) {
+  return Object.entries(workoutLog).some(([key, data]) => {
+    if (dateFromKey(key) !== dateStr) return false;
+    return countLoggedSets(data) > 0;
+  });
+}
+
+function computeStreak() {
+  const scheduled = getScheduledDaysBeforeToday();
+  if (scheduled.length === 0) return { streak: 0, broken: false };
+  const todayStr = today();
+  let streak = 0;
+  for (let i = scheduled.length - 1; i >= 0; i--) {
+    const d = scheduled[i];
+    if (d === todayStr && !dayHasAnyLoggedSet(d)) continue;
+    if (dayHasAnyLoggedSet(d)) {
+      streak++;
+    } else {
+      break;
+    }
+  }
+  return { streak, broken: false };
+}
+
+function renderStreakChip() {
+  const el = document.getElementById('streakChip');
+  if (!el) return;
+  const { streak } = computeStreak();
+  if (streak === 0) {
+    el.innerHTML = `<div class="streak-chip zero"><span>No streak yet</span></div>`;
+  } else {
+    el.innerHTML = `<div class="streak-chip">🔥 <span class="streak-num">${streak}</span> <span>day streak</span></div>`;
+  }
+}
+
+// ─── CALENDAR RENDER ─────────────────────────────────────────────────────────
+let calViewYear = new Date().getFullYear();
+let calViewMonth = new Date().getMonth();
+
+function renderCalendar() {
+  const el = document.getElementById('calendarContent');
+  if (!el) return;
+  const todayStr = today();
+  const workoutDays = getWorkoutDays();
+
+  const loggedDates = new Set();
+  Object.entries(workoutLog).forEach(([key, data]) => {
+    if (countLoggedSets(data) > 0) loggedDates.add(dateFromKey(key));
+  });
+
+  const scheduledSet = new Set(getScheduledDaysBeforeToday());
+  const { streak } = computeStreak();
+  const totalLogged = [...loggedDates].filter(d => scheduledSet.has(d)).length;
+  const missedCount = [...scheduledSet].filter(d => d < todayStr && !loggedDates.has(d)).length;
+
+  const firstOfMonth = new Date(calViewYear, calViewMonth, 1);
+  const lastOfMonth = new Date(calViewYear, calViewMonth + 1, 0);
+  let startDay = firstOfMonth.getDay();
+  startDay = startDay === 0 ? 6 : startDay - 1;
+
+  const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const dowLabels = ['M','T','W','T','F','S','S'];
+
+  const cells = [];
+  for (let i = 0; i < startDay; i++) {
+    const d = new Date(firstOfMonth);
+    d.setDate(d.getDate() - (startDay - i));
+    cells.push({ date: localDateStr(d), otherMonth: true });
+  }
+  for (let d = 1; d <= lastOfMonth.getDate(); d++) {
+    cells.push({ date: localDateStr(new Date(calViewYear, calViewMonth, d)), otherMonth: false });
+  }
+  const rem = (7 - (cells.length % 7)) % 7;
+  for (let i = 1; i <= rem; i++) {
+    const dt = new Date(lastOfMonth);
+    dt.setDate(dt.getDate() + i);
+    cells.push({ date: localDateStr(dt), otherMonth: true });
+  }
+
+  const phaseStartDate = new Date(phaseStart + 'T00:00:00');
+  const todayDate = new Date(todayStr + 'T12:00:00');
+  const canGoBack = !(calViewYear === phaseStartDate.getFullYear() && calViewMonth <= phaseStartDate.getMonth());
+  const canGoFwd = !(calViewYear === todayDate.getFullYear() && calViewMonth >= todayDate.getMonth());
+
+  const cellsHTML = cells.map(cell => {
+    const isToday = cell.date === todayStr;
+    const worked = loggedDates.has(cell.date);
+    const missed = scheduledSet.has(cell.date) && !worked && cell.date < todayStr;
+    let cls = 'cal-cell';
+    if (cell.otherMonth) cls += ' other-month';
+    if (isToday) cls += ' is-today';
+    if (worked) cls += ' worked-out';
+    else if (missed) cls += ' scheduled-missed';
+    return `<div class="${cls}">${parseInt(cell.date.split('-')[2])}</div>`;
+  }).join('');
+
+  el.innerHTML = `
+    <div class="cal-stats-row">
+      <div class="cal-stat-box"><div class="cal-stat-val">${streak}</div><div class="cal-stat-label">Streak 🔥</div></div>
+      <div class="cal-stat-box"><div class="cal-stat-val">${totalLogged}</div><div class="cal-stat-label">Done</div></div>
+      <div class="cal-stat-box"><div class="cal-stat-val">${missedCount}</div><div class="cal-stat-label">Missed</div></div>
+    </div>
+    <div class="cal-nav">
+      <button class="cal-nav-btn" id="calPrevBtn" ${!canGoBack ? 'disabled style="opacity:0.3;cursor:default;"' : ''}>‹</button>
+      <div class="cal-month-label">${monthNames[calViewMonth]} ${calViewYear}</div>
+      <button class="cal-nav-btn" id="calNextBtn" ${!canGoFwd ? 'disabled style="opacity:0.3;cursor:default;"' : ''}>›</button>
+    </div>
+    <div class="cal-grid">
+      ${dowLabels.map(l => `<div class="cal-dow">${l}</div>`).join('')}
+      ${cellsHTML}
+    </div>
+    <div class="cal-legend">
+      <div class="cal-legend-item"><div class="cal-legend-dot" style="background:var(--accent);"></div><span>Worked out</span></div>
+      <div class="cal-legend-item"><div class="cal-legend-dot" style="background:rgba(255,77,77,0.2);border:1px solid rgba(255,77,77,0.3);"></div><span>Missed session</span></div>
+      <div class="cal-legend-item"><div class="cal-legend-dot" style="background:var(--bg3);border:1px solid var(--border);"></div><span>Rest / future</span></div>
+    </div>`;
+
+  if (canGoBack) document.getElementById('calPrevBtn').addEventListener('click', () => {
+    calViewMonth--; if (calViewMonth < 0) { calViewMonth = 11; calViewYear--; } renderCalendar();
+  });
+  if (canGoFwd) document.getElementById('calNextBtn').addEventListener('click', () => {
+    calViewMonth++; if (calViewMonth > 11) { calViewMonth = 0; calViewYear++; } renderCalendar();
+  });
+}
+
+// ─── PLAN EDITOR ─────────────────────────────────────────────────────────────
+let planEditorCallback = null;
+let planEditorDraft = null;
+
+function openPlanEditor(title, initialPlan, onSave) {
+  planEditorCallback = onSave;
+  planEditorDraft = JSON.parse(JSON.stringify(initialPlan));
+  document.getElementById('planEditorTitle').textContent = title;
+  renderPlanEditorBody();
+  document.getElementById('planEditorOverlay').classList.add('active');
+  document.getElementById('planEditorOverlay').scrollTop = 0;
+}
+
+function closePlanEditor() {
+  document.getElementById('planEditorOverlay').classList.remove('active');
+  planEditorDraft = null;
+  planEditorCallback = null;
+}
+
+function readPlanEditorDraft() {
+  ALL_DAYS_ORDERED.forEach(day => {
+    const container = document.getElementById('plan-day-exlist-' + day);
+    if (!container) return;
+    const rows = container.querySelectorAll('.plan-ex-row');
+    const exercises = [];
+    rows.forEach(row => {
+      const name = row.querySelector('.plan-ex-name-input').value.trim();
+      if (!name) return;
+      const weightRaw = row.querySelector('.plan-ex-weight-input').value.trim();
+      const sets = parseInt(row.querySelector('.plan-ex-sets-input').value) || 3;
+      const noTrack = row.querySelector('.plan-flag-notrack').checked;
+      const noReps = row.querySelector('.plan-flag-noreps').checked;
+      const ex = { name, weight: noTrack ? null : (weightRaw || null), sets };
+      if (noTrack) ex.noTrack = true;
+      if (noReps) ex.noReps = true;
+      exercises.push(ex);
+    });
+    if (exercises.length > 0) planEditorDraft[day] = exercises;
+    else delete planEditorDraft[day];
+  });
+}
+
+function renderPlanEditorBody() {
+  const body = document.getElementById('planEditorBody');
+  const daysHTML = ALL_DAYS_ORDERED.map(day => {
+    const exercises = planEditorDraft[day] || [];
+    const exRows = exercises.map((ex, idx) => buildPlanExRow(day, idx, ex)).join('');
+    return `
+      <div class="plan-day-card ${exercises.length > 0 ? 'open' : ''}" id="plan-day-card-${day}">
+        <div class="plan-day-header" data-action="toggle-plan-day" data-day="${day}">
+          <div class="plan-day-title">${day}
+            <span style="font-size:10px;font-weight:400;color:var(--text3);">
+              ${exercises.length ? exercises.length + ' exercise' + (exercises.length !== 1 ? 's' : '') : '— rest day'}
+            </span>
+          </div>
+          <div class="plan-day-chevron">▼</div>
+        </div>
+        <div class="plan-day-body">
+          <div id="plan-day-exlist-${day}">${exRows}</div>
+          <button class="plan-add-ex-btn" data-action="plan-add-ex" data-day="${day}">+ Add exercise</button>
+        </div>
+      </div>`;
+  }).join('');
+
+  body.innerHTML = daysHTML + `<button class="plan-save-btn" id="planEditorSaveBtn">Save Plan ✓</button><div style="height:20px;"></div>`;
+  document.getElementById('planEditorSaveBtn').addEventListener('click', savePlanFromEditor);
+}
+
+function buildPlanExRow(day, idx, ex) {
+  const wVal = (ex.noTrack || !ex.weight) ? '' : ex.weight;
+  return `<div class="plan-ex-row">
+    <div style="flex:1;min-width:0;">
+      <input class="plan-ex-name-input" type="text" placeholder="Exercise name" value="${escHTML(ex.name || '')}">
+      <div class="plan-ex-detail-row">
+        <span class="plan-ex-mini-label">Sets</span>
+        <input class="plan-ex-mini-input plan-ex-sets-input" type="number" min="1" max="10" value="${ex.sets || 3}" inputmode="numeric">
+        <span class="plan-ex-mini-label">Wt</span>
+        <input class="plan-ex-mini-input plan-ex-weight-input" type="text" placeholder="BW / kg" value="${escHTML(wVal)}" ${ex.noTrack ? 'disabled' : ''} style="width:72px;">
+      </div>
+      <div class="plan-flags">
+        <label class="plan-flag-label"><input type="checkbox" class="plan-flag-notrack" ${ex.noTrack ? 'checked' : ''} onchange="this.closest('.plan-ex-row').querySelector('.plan-ex-weight-input').disabled=this.checked"> No tracking (ABS etc.)</label>
+        <label class="plan-flag-label"><input type="checkbox" class="plan-flag-noreps" ${ex.noReps ? 'checked' : ''}> No reps</label>
+      </div>
+    </div>
+    <button class="plan-ex-del" data-action="plan-del-ex" data-day="${day}" data-idx="${idx}">✕</button>
+  </div>`;
+}
+
+function addPlanExercise(day) {
+  readPlanEditorDraft();
+  if (!planEditorDraft[day]) planEditorDraft[day] = [];
+  planEditorDraft[day].push({ name: '', weight: '', sets: 3 });
+  renderPlanEditorBody();
+  const card = document.getElementById('plan-day-card-' + day);
+  if (card) card.classList.add('open');
+}
+
+function deletePlanExercise(day, idx) {
+  readPlanEditorDraft();
+  if (planEditorDraft[day]) {
+    planEditorDraft[day].splice(parseInt(idx), 1);
+    if (planEditorDraft[day].length === 0) delete planEditorDraft[day];
+  }
+  renderPlanEditorBody();
+}
+
+function savePlanFromEditor() {
+  readPlanEditorDraft();
+  const plan = planEditorDraft;
+  const hasDays = Object.keys(plan).some(d => plan[d] && plan[d].length > 0);
+  if (!hasDays) { toast('Add at least one exercise!'); return; }
+  let allNamed = true;
+  Object.values(plan).forEach(exs => exs.forEach(ex => { if (!ex.name) allNamed = false; }));
+  if (!allNamed) { toast('Fill in all exercise names'); return; }
+  if (planEditorCallback) planEditorCallback(plan);
+  closePlanEditor();
+}
 
 migrateWorkoutLogKeysIfNeeded();
 seedBaselineIfNeeded();
